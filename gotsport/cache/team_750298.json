@@ -1,0 +1,27 @@
+{
+ "team_id": 750298,
+ "team_name": "SOLAR ECNL RL NTX G2012/13",
+ "pulled": "2026-09-15",
+ "events": [
+  {
+   "id": 51790,
+   "name": "BOB WISEMAN MEMORIAL 26",
+   "start": "2026-08-14",
+   "end": "2026-08-17"
+  },
+  {
+   "id": 55327,
+   "name": "Premier Cup 2026",
+   "start": "2026-08-07",
+   "end": "2026-08-09"
+  }
+ ],
+ "flights": {
+  "51790": [
+   525676
+  ],
+  "55327": [
+   507818
+  ]
+ }
+}

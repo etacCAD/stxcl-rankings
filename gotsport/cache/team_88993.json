@@ -1,0 +1,135 @@
+{
+ "team_id": 88993,
+ "team_name": "Sting Brave ECNL RL NTX G2012/13",
+ "pulled": "2026-09-15",
+ "events": [
+  {
+   "id": 41032,
+   "name": "2025 NTX Celtic Snowball Cup",
+   "start": "2025-12-12",
+   "end": "2025-12-14"
+  },
+  {
+   "id": 43184,
+   "name": "2026 Dallas St. Paddy's Day Invitational",
+   "start": "2026-03-13",
+   "end": "2026-03-15"
+  },
+  {
+   "id": 44382,
+   "name": "Vegas Cup 2026",
+   "start": "2026-01-16",
+   "end": "2026-01-20"
+  },
+  {
+   "id": 44745,
+   "name": "Girls Classic League 2025-26",
+   "start": "2025-07-01",
+   "end": "2026-05-11"
+  },
+  {
+   "id": 45336,
+   "name": "FALL PREMIER SHOWCASE",
+   "start": "2025-11-14",
+   "end": "2025-11-17"
+  },
+  {
+   "id": 45337,
+   "name": "DALLAS SPRING SHOWCASE & CAREY INVITATIONAL 26",
+   "start": "2026-05-08",
+   "end": "2026-05-10"
+  },
+  {
+   "id": 45488,
+   "name": "Dallas Cup 2026",
+   "start": "2026-03-29",
+   "end": "2026-04-06"
+  },
+  {
+   "id": 47463,
+   "name": "The Gambit Winter Cup Dallas 2025",
+   "start": "2025-12-05",
+   "end": "2025-12-08"
+  },
+  {
+   "id": 47874,
+   "name": "2026 Desperado Summer Cup",
+   "start": "2026-08-07",
+   "end": "2026-08-09"
+  },
+  {
+   "id": 49198,
+   "name": "Next Generation Cup 2026",
+   "start": "2026-05-14",
+   "end": "2026-05-17"
+  },
+  {
+   "id": 49863,
+   "name": "Solar Winter Cup 2026",
+   "start": "2026-01-10",
+   "end": "2026-01-11"
+  },
+  {
+   "id": 50707,
+   "name": "ECNL Regional League Girls 2025-2026",
+   "start": "2025-09-06",
+   "end": "2026-06-07"
+  },
+  {
+   "id": 51790,
+   "name": "BOB WISEMAN MEMORIAL 26",
+   "start": "2026-08-14",
+   "end": "2026-08-17"
+  },
+  {
+   "id": 56024,
+   "name": "U90C Labor Day Open 2026",
+   "start": "2026-09-05",
+   "end": "2026-09-08"
+  }
+ ],
+ "flights": {
+  "41032": [
+   347557
+  ],
+  "43184": [
+   374860
+  ],
+  "44382": [
+   453277
+  ],
+  "44745": [
+   391935
+  ],
+  "45336": [
+   437542
+  ],
+  "45337": [
+   468898
+  ],
+  "45488": [
+   398135
+  ],
+  "47463": [
+   415310
+  ],
+  "47874": [
+   420456
+  ],
+  "49198": [
+   495594
+  ],
+  "49863": [
+   443030
+  ],
+  "50707": [
+   477327
+  ],
+  "51790": [
+   525676
+  ],
+  "56024": [
+   514677
+  ]
+ }
+}

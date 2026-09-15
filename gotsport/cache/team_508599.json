@@ -1,0 +1,63 @@
+{
+ "team_id": 508599,
+ "team_name": "SA United N1 G2012/13 (TX)",
+ "pulled": "2026-09-15",
+ "events": [
+  {
+   "id": 41948,
+   "name": "Development Player League 25/26",
+   "start": "2025-08-01",
+   "end": "2026-07-31"
+  },
+  {
+   "id": 47258,
+   "name": "2026 DPL Eastern Regional, U13/U14 - Richmond, Virginia",
+   "start": "2026-04-23",
+   "end": "2026-04-27"
+  },
+  {
+   "id": 49175,
+   "name": "Winter Classic 2025",
+   "start": "2025-12-06",
+   "end": "2025-12-07"
+  },
+  {
+   "id": 50978,
+   "name": "16th Annual United for Hope",
+   "start": "2026-02-07",
+   "end": "2026-02-08"
+  },
+  {
+   "id": 53054,
+   "name": "4th Annual La Panaderia Spring Classic",
+   "start": "2026-05-02",
+   "end": "2026-05-03"
+  },
+  {
+   "id": 55842,
+   "name": "11th Annual ADIDAS Fall Kickoff",
+   "start": "2026-08-22",
+   "end": "2026-08-23"
+  }
+ ],
+ "flights": {
+  "41948": [
+   393947
+  ],
+  "47258": [
+   412535
+  ],
+  "49175": [
+   433160
+  ],
+  "50978": [
+   458410
+  ],
+  "53054": [
+   483878
+  ],
+  "55842": [
+   512764
+  ]
+ }
+}

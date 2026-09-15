@@ -1,0 +1,36 @@
+{
+ "team_id": 523464,
+ "team_name": "Capital City SC U14G DPL",
+ "pulled": "2026-09-15",
+ "events": [
+  {
+   "id": 41948,
+   "name": "Development Player League 25/26",
+   "start": "2025-08-01",
+   "end": "2026-07-31"
+  },
+  {
+   "id": 47258,
+   "name": "2026 DPL Eastern Regional, U13/U14 - Richmond, Virginia",
+   "start": "2026-04-23",
+   "end": "2026-04-27"
+  },
+  {
+   "id": 55842,
+   "name": "11th Annual ADIDAS Fall Kickoff",
+   "start": "2026-08-22",
+   "end": "2026-08-23"
+  }
+ ],
+ "flights": {
+  "41948": [
+   403024
+  ],
+  "47258": [
+   412537
+  ],
+  "55842": [
+   512764
+  ]
+ }
+}

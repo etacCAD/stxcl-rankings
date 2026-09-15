@@ -1,0 +1,73 @@
+{
+ "team_id": 401266,
+ "team_name": "BVFC Champions 2013G",
+ "pulled": "2026-09-15",
+ "events": [
+  {
+   "id": 45379,
+   "name": "Fall 2025 Eastern District Players League",
+   "start": "2025-09-01",
+   "end": "2025-11-24"
+  },
+  {
+   "id": 45571,
+   "name": "2025 Bat City Cup",
+   "start": "2025-12-05",
+   "end": "2025-12-07"
+  },
+  {
+   "id": 48975,
+   "name": "The Cup 2026",
+   "start": "2026-02-07",
+   "end": "2026-02-09"
+  },
+  {
+   "id": 50353,
+   "name": "2026 Spring Eastern District Players League",
+   "start": "2025-11-17",
+   "end": "2026-03-30"
+  },
+  {
+   "id": 51528,
+   "name": "2026 STX Presidents Cup",
+   "start": "2026-04-11",
+   "end": "2026-05-18"
+  },
+  {
+   "id": 52704,
+   "name": "South Central Presidents 2026 Cup National Qualifier ",
+   "start": "2026-06-11",
+   "end": "2026-06-15"
+  },
+  {
+   "id": 55539,
+   "name": "2026 Houston Warm-Up Cup",
+   "start": "2026-08-21",
+   "end": "2026-08-23"
+  }
+ ],
+ "flights": {
+  "45379": [
+   396858
+  ],
+  "45571": [
+   398849
+  ],
+  "48975": [
+   468146
+  ],
+  "50353": [
+   449355
+  ],
+  "51528": [
+   465774,
+   465776
+  ],
+  "52704": [
+   480269
+  ],
+  "55539": [
+   509544
+  ]
+ }
+}

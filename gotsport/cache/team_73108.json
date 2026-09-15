@@ -1,0 +1,46 @@
+{
+ "team_id": 73108,
+ "team_name": "N1 G2012/13 Green (TX)",
+ "pulled": "2026-09-15",
+ "events": [
+  {
+   "id": 43909,
+   "name": "WDDOA Flight 2 - Challenger (25-26)",
+   "start": "2025-09-06",
+   "end": "2026-03-30"
+  },
+  {
+   "id": 49565,
+   "name": "Target USA CUP Qualifier Texas",
+   "start": "2026-02-06",
+   "end": "2026-02-09"
+  },
+  {
+   "id": 51528,
+   "name": "2026 STX Presidents Cup",
+   "start": "2026-04-11",
+   "end": "2026-05-18"
+  },
+  {
+   "id": 55130,
+   "name": "Houston Youth Cup 2026",
+   "start": "2026-08-22",
+   "end": "2026-08-24"
+  }
+ ],
+ "flights": {
+  "43909": [
+   382135
+  ],
+  "49565": [
+   439391
+  ],
+  "51528": [
+   465775,
+   465776
+  ],
+  "55130": [
+   535696
+  ]
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "team_id": 642266,
+ "team_name": "Aspire 12/13",
+ "pulled": "2026-09-15",
+ "events": [
+  {
+   "id": 47826,
+   "name": "Aspire West Regional, U13/14 - 25/26",
+   "start": "2025-10-09",
+   "end": "2025-10-13"
+  },
+  {
+   "id": 47840,
+   "name": "18th Annual Copa San Antonio",
+   "start": "2026-02-14",
+   "end": "2026-02-15"
+  },
+  {
+   "id": 55842,
+   "name": "11th Annual ADIDAS Fall Kickoff",
+   "start": "2026-08-22",
+   "end": "2026-08-23"
+  },
+  {
+   "id": 56418,
+   "name": "16th Annual Copa Del Rey",
+   "start": "2026-08-29",
+   "end": "2026-08-30"
+  }
+ ],
+ "flights": {
+  "47826": [
+   419776
+  ],
+  "47840": [
+   419962
+  ],
+  "55842": [
+   512764
+  ],
+  "56418": [
+   518137
+  ]
+ }
+}

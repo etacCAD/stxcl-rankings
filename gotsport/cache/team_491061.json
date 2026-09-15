@@ -1,0 +1,36 @@
+{
+ "team_id": 491061,
+ "team_name": "Aspire 12/13",
+ "pulled": "2026-09-15",
+ "events": [
+  {
+   "id": 46060,
+   "name": "U90C International Girls Cup of McKinney 2026",
+   "start": "2026-04-01",
+   "end": "2026-04-06"
+  },
+  {
+   "id": 47898,
+   "name": "Aspire East Regional, U13-19 - 25/26",
+   "start": "2026-04-16",
+   "end": "2026-04-21"
+  },
+  {
+   "id": 55130,
+   "name": "Houston Youth Cup 2026",
+   "start": "2026-08-22",
+   "end": "2026-08-24"
+  }
+ ],
+ "flights": {
+  "46060": [
+   402602
+  ],
+  "47898": [
+   471808
+  ],
+  "55130": [
+   535696
+  ]
+ }
+}

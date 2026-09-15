@@ -1,0 +1,93 @@
+[
+ {
+  "id": 27410865,
+  "date": "2026-09-05",
+  "event_id": 56024,
+  "event": "U90C Labor Day Open 2026",
+  "division": "U14G Under 14 Girls Red",
+  "home_id": 120854,
+  "home_name": "Dallas Cosmos SC ECNL RL NTX G2012/13",
+  "away_id": 88993,
+  "away_name": "Sting Brave ECNL RL NTX G2012/13",
+  "hs": 1,
+  "as": 5
+ },
+ {
+  "id": 27410863,
+  "date": "2026-09-05",
+  "event_id": 56024,
+  "event": "U90C Labor Day Open 2026",
+  "division": "U14G Under 14 Girls Red",
+  "home_id": 88993,
+  "home_name": "Sting Brave ECNL RL NTX G2012/13",
+  "away_id": 643055,
+  "away_name": "DKSC ECNL RL G2012/13",
+  "hs": 3,
+  "as": 1
+ },
+ {
+  "id": 27410866,
+  "date": "2026-09-06",
+  "event_id": 56024,
+  "event": "U90C Labor Day Open 2026",
+  "division": "U14G Under 14 Girls Red",
+  "home_id": 581362,
+  "home_name": "Sting Black ECNL RL NTX G2012/13",
+  "away_id": 88993,
+  "away_name": "Sting Brave ECNL RL NTX G2012/13",
+  "hs": 0,
+  "as": 0
+ },
+ {
+  "id": 27410862,
+  "date": "2026-09-05",
+  "event_id": 56024,
+  "event": "U90C Labor Day Open 2026",
+  "division": "U14G Under 14 Girls Red",
+  "home_id": 581362,
+  "home_name": "Sting Black ECNL RL NTX G2012/13",
+  "away_id": 120854,
+  "away_name": "Dallas Cosmos SC ECNL RL NTX G2012/13",
+  "hs": 2,
+  "as": 1
+ },
+ {
+  "id": 27410867,
+  "date": "2026-09-06",
+  "event_id": 56024,
+  "event": "U90C Labor Day Open 2026",
+  "division": "U14G Under 14 Girls Red",
+  "home_id": 643055,
+  "home_name": "DKSC ECNL RL G2012/13",
+  "away_id": 120854,
+  "away_name": "Dallas Cosmos SC ECNL RL NTX G2012/13",
+  "hs": 2,
+  "as": 1
+ },
+ {
+  "id": 27410868,
+  "date": "2026-09-06",
+  "event_id": 56024,
+  "event": "U90C Labor Day Open 2026",
+  "division": "U14G Under 14 Girls Red",
+  "home_id": 88993,
+  "home_name": "Sting Brave ECNL RL NTX G2012/13",
+  "away_id": 581362,
+  "away_name": "Sting Black ECNL RL NTX G2012/13",
+  "hs": 4,
+  "as": 0
+ },
+ {
+  "id": 27410864,
+  "date": "2026-09-05",
+  "event_id": 56024,
+  "event": "U90C Labor Day Open 2026",
+  "division": "U14G Under 14 Girls Red",
+  "home_id": 643055,
+  "home_name": "DKSC ECNL RL G2012/13",
+  "away_id": 581362,
+  "away_name": "Sting Black ECNL RL NTX G2012/13",
+  "hs": 4,
+  "as": 5
+ }
+]
