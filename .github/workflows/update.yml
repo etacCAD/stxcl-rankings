@@ -27,7 +27,7 @@ jobs:
       - name: Refresh GotSport tournament games (slow; falls back to saved data if blocked)
         run: python gotsport.py
         continue-on-error: true
-        timeout-minutes: 20
+        timeout-minutes: 40
 
       - run: python build_site.py
 

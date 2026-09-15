@@ -366,7 +366,8 @@ def render_tourney_note(a):
         return ""
     league = {g[s] for g in c for s in ("home", "away") if g[s] in a["teams"]}
     return (f'<div class="banner info"><b>Tournament results are helping.</b><p>{len(c)} tournament games since Aug 1 '
-            f"connect {len(league)} league teams, either head-to-head or through shared opponents. They count at half weight.</p></div>")
+            f"connect {len(league)} league teams: head-to-head, through a shared opponent, or through opponents who played each other. "
+            "They count at half weight.</p></div>")
 
 
 def render_flags(a):
@@ -474,7 +475,7 @@ def render_method(a):
                if st.get("last_success") else "never")
     gs_txt = (f"<li><b>Tournaments:</b> {len(gsg)} games since Aug 1 found on GotSport for {len(gteams)} league teams. "
               "A tournament game counts, at half weight, only when it helps compare league teams "
-              f"(they met, or share an opponent); so far {len(a['gs_counted'])} do. The rest are listed on team pages. "
+              f"(they met, share an opponent, or their opponents played each other; no longer chains); so far {len(a['gs_counted'])} do. The rest are listed on team pages. "
               f"Last checked {checked}."
               + (" ⚠️ GotSport blocked the latest check, so this uses saved data." if st.get("blocked") else "")
               + (f" Not yet matched on GotSport: {e(', '.join(unmatched))}." if unmatched else "")
