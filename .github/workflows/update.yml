@@ -23,14 +23,20 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
+
+      - name: Refresh GotSport tournament games (slow; falls back to saved data if blocked)
+        run: python gotsport.py
+        continue-on-error: true
+        timeout-minutes: 20
+
       - run: python build_site.py
 
-      - name: Commit new matchday snapshot
+      - name: Commit snapshot and GotSport cache
         run: |
           git config user.name "rankings-bot"
           git config user.email "rankings-bot@users.noreply.github.com"
-          git add history
-          git diff --cached --quiet || (git commit -m "Snapshot $(date -u +%F)" && git push)
+          git add history gotsport
+          git diff --cached --quiet || (git commit -m "Weekly data $(date -u +%F)" && git push)
 
       - uses: actions/upload-pages-artifact@v3
         with:

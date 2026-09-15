@@ -1,0 +1,93 @@
+[
+ {
+  "id": 27095840,
+  "date": "2026-08-23",
+  "event_id": 55842,
+  "event": "11th Annual ADIDAS Fall Kickoff",
+  "division": "U14G U14 GIRLS GOLD",
+  "home_id": 523464,
+  "home_name": "Capital City SC U14G DPL",
+  "away_id": 381807,
+  "away_name": "Sting CC ECNL RL STXCL G2012/13 Martinez",
+  "hs": 2,
+  "as": 2
+ },
+ {
+  "id": 27095838,
+  "date": "2026-08-23",
+  "event_id": 55842,
+  "event": "11th Annual ADIDAS Fall Kickoff",
+  "division": "U14G U14 GIRLS GOLD",
+  "home_id": 642266,
+  "home_name": "Aspire 12/13",
+  "away_id": 523464,
+  "away_name": "Capital City SC U14G DPL",
+  "hs": 0,
+  "as": 1
+ },
+ {
+  "id": 27095837,
+  "date": "2026-08-22",
+  "event_id": 55842,
+  "event": "11th Annual ADIDAS Fall Kickoff",
+  "division": "U14G U14 GIRLS GOLD",
+  "home_id": 523464,
+  "home_name": "Capital City SC U14G DPL",
+  "away_id": 381807,
+  "away_name": "Sting CC ECNL RL STXCL G2012/13 Martinez",
+  "hs": 1,
+  "as": 1
+ },
+ {
+  "id": 27095834,
+  "date": "2026-08-23",
+  "event_id": 55842,
+  "event": "11th Annual ADIDAS Fall Kickoff",
+  "division": "U14G U14 GIRLS GOLD",
+  "home_id": 508599,
+  "home_name": "SA United N1 G2012/13 (TX)",
+  "away_id": 381807,
+  "away_name": "Sting CC ECNL RL STXCL G2012/13 Martinez",
+  "hs": 0,
+  "as": 4
+ },
+ {
+  "id": 27095836,
+  "date": "2026-08-22",
+  "event_id": 55842,
+  "event": "11th Annual ADIDAS Fall Kickoff",
+  "division": "U14G U14 GIRLS GOLD",
+  "home_id": 508599,
+  "home_name": "SA United N1 G2012/13 (TX)",
+  "away_id": 523464,
+  "away_name": "Capital City SC U14G DPL",
+  "hs": 0,
+  "as": 3
+ },
+ {
+  "id": 27095835,
+  "date": "2026-08-22",
+  "event_id": 55842,
+  "event": "11th Annual ADIDAS Fall Kickoff",
+  "division": "U14G U14 GIRLS GOLD",
+  "home_id": 381807,
+  "home_name": "Sting CC ECNL RL STXCL G2012/13 Martinez",
+  "away_id": 642266,
+  "away_name": "Aspire 12/13",
+  "hs": 1,
+  "as": 1
+ },
+ {
+  "id": 27095833,
+  "date": "2026-08-22",
+  "event_id": 55842,
+  "event": "11th Annual ADIDAS Fall Kickoff",
+  "division": "U14G U14 GIRLS GOLD",
+  "home_id": 642266,
+  "home_name": "Aspire 12/13",
+  "away_id": 508599,
+  "away_name": "SA United N1 G2012/13 (TX)",
+  "hs": 0,
+  "as": 0
+ }
+]

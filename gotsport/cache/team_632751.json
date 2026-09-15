@@ -1,0 +1,26 @@
+{
+ "team_id": 632751,
+ "team_name": "Challenge ECNL RL STXCL G13",
+ "events": [
+  {
+   "id": 50707,
+   "name": "ECNL Regional League Girls 2025-2026",
+   "start": "2025-09-06",
+   "end": "2026-06-07"
+  },
+  {
+   "id": 50739,
+   "name": "2026 Reliant Energy Power Cup",
+   "start": "2026-01-30",
+   "end": "2026-02-01"
+  }
+ ],
+ "flights": {
+  "50707": [
+   477769
+  ],
+  "50739": [
+   454686
+  ]
+ }
+}

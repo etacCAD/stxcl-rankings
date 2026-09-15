@@ -1,0 +1,44 @@
+{
+ "team_id": 629929,
+ "team_name": "SG1 ECNL RL STXCL G13",
+ "events": [
+  {
+   "id": 45373,
+   "name": "Upper 90 Challenge 2025",
+   "start": "2025-12-05",
+   "end": "2025-12-08"
+  },
+  {
+   "id": 47490,
+   "name": "2026 National Cup South Central Regional",
+   "start": "2026-06-12",
+   "end": "2026-06-16"
+  },
+  {
+   "id": 50707,
+   "name": "ECNL Regional League Girls 2025-2026",
+   "start": "2025-09-06",
+   "end": "2026-06-07"
+  },
+  {
+   "id": 51246,
+   "name": "Texas Easter Cup 2026",
+   "start": "2026-04-03",
+   "end": "2026-04-05"
+  }
+ ],
+ "flights": {
+  "45373": [
+   454139
+  ],
+  "47490": [
+   415783
+  ],
+  "50707": [
+   477769
+  ],
+  "51246": [
+   462020
+  ]
+ }
+}

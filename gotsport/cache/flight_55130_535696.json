@@ -1,0 +1,93 @@
+[
+ {
+  "id": 27044302,
+  "date": "2026-08-22",
+  "event_id": 55130,
+  "event": "Houston Youth Cup 2026",
+  "division": "U14G Gold (11v11)",
+  "home_id": 241432,
+  "home_name": "GA 13/14 North",
+  "away_id": 73108,
+  "away_name": "N1 G2012/13 Green (TX)",
+  "hs": 5,
+  "as": 0
+ },
+ {
+  "id": 27046488,
+  "date": "2026-08-23",
+  "event_id": 55130,
+  "event": "Houston Youth Cup 2026",
+  "division": "U14G Gold (11v11)",
+  "home_id": 491061,
+  "home_name": "South U14 Aspire",
+  "away_id": 241432,
+  "away_name": "GA 13/14 North",
+  "hs": 1,
+  "as": 1
+ },
+ {
+  "id": 27044304,
+  "date": "2026-08-22",
+  "event_id": 55130,
+  "event": "Houston Youth Cup 2026",
+  "division": "U14G Gold (11v11)",
+  "home_id": 73108,
+  "home_name": "N1 G2012/13 Green (TX)",
+  "away_id": 491061,
+  "away_name": "South U14 Aspire",
+  "hs": 0,
+  "as": 1
+ },
+ {
+  "id": 27044307,
+  "date": "2026-08-23",
+  "event_id": 55130,
+  "event": "Houston Youth Cup 2026",
+  "division": "U14G Gold (11v11)",
+  "home_id": 163586,
+  "home_name": "Imperial SC ECNL RL G2012/13",
+  "away_id": 73108,
+  "away_name": "N1 G2012/13 Green (TX)",
+  "hs": 3,
+  "as": 1
+ },
+ {
+  "id": 27044303,
+  "date": "2026-08-22",
+  "event_id": 55130,
+  "event": "Houston Youth Cup 2026",
+  "division": "U14G Gold (11v11)",
+  "home_id": 491061,
+  "home_name": "South U14 Aspire",
+  "away_id": 163586,
+  "away_name": "Imperial SC ECNL RL G2012/13",
+  "hs": 1,
+  "as": 3
+ },
+ {
+  "id": 27044306,
+  "date": "2026-08-23",
+  "event_id": 55130,
+  "event": "Houston Youth Cup 2026",
+  "division": "U14G Gold (11v11)",
+  "home_id": 241432,
+  "home_name": "GA 13/14 North",
+  "away_id": 491061,
+  "away_name": "South U14 Aspire",
+  "hs": 0,
+  "as": 3
+ },
+ {
+  "id": 27044305,
+  "date": "2026-08-22",
+  "event_id": 55130,
+  "event": "Houston Youth Cup 2026",
+  "division": "U14G Gold (11v11)",
+  "home_id": 163586,
+  "home_name": "Imperial SC ECNL RL G2012/13",
+  "away_id": 241432,
+  "away_name": "GA 13/14 North",
+  "hs": 0,
+  "as": 1
+ }
+]

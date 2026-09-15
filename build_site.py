@@ -18,8 +18,10 @@ import html
 import json
 import pathlib
 import random
+import re
 from zoneinfo import ZoneInfo
 
+import gotsport
 import rank
 
 EVENT_ID = 4260
@@ -42,9 +44,10 @@ def signed(v):
 
 # --- analysis ----------------------------------------------------------------
 
-def analyse(meta, sched, standings, event, simulate_until=None):
+def analyse(meta, sched, standings, event, simulate_until=None, gs_games=()):
     teams, played, upcoming = rank.parse(sched)
     ids = set(teams)
+    gs_games = list(gs_games)
 
     if simulate_until:
         rng = random.Random(7)
@@ -58,12 +61,16 @@ def analyse(meta, sched, standings, event, simulate_until=None):
         upcoming = keep
         played.sort(key=lambda g: g["dt"])
 
-    rec, k = rank.build(ids, played)
-    comps = rank.components(ids, played)
+    # tournament games only count when they help compare league teams to each other
+    counted, _ = gotsport.split_counted(gs_games, ids)
+    linked = sorted(played + counted, key=lambda g: g["dt"])
+
+    rec, k = rank.build(ids, played, counted)
+    comps = rank.components(ids, linked)
     connected = len(comps) == 1
     name = lambda t: teams[t]["name"]
 
-    pods = rank.seed_pods(ids, played) or []
+    pods = rank.seed_pods(ids, linked) or []
     pods = sorted(pods, key=lambda c: min(map(name, c)))
     pod_of = {t: i + 1 for i, c in enumerate(pods) for t in c}
 
@@ -144,8 +151,10 @@ def analyse(meta, sched, standings, event, simulate_until=None):
         "played": played, "upcoming": upcoming, "scheduled": len(played) + len(upcoming),
         "connected": connected, "components": len(comps), "pods": pods, "pod_of": pod_of,
         "pod_tables": pod_tables, "tiers": tiers, "links": links,
-        "connects_on": rank.connects_on(ids, played, upcoming),
-        "bridges": rank.bridges(ids, played) if connected else [],
+        "connects_on": rank.connects_on(ids, linked, upcoming),
+        "bridges": rank.bridges(ids, linked) if connected else [],
+        "gs_games": gs_games, "gs_counted": counted,
+        "gs_status": gotsport.load_status(), "gs_mapping": gotsport.load_mapping(),
         "overall": overall, "pts_rank": pts_rank, "flags": flags,
         "prev": prev, "last_date": last_date, "next_date": next_date,
         "cross_check": rank.cross_check(standings, rec) if not simulate_until else [],
@@ -346,6 +355,20 @@ def render_banner(a):
             "so the overall ranking is backed by evidence across the league.</p></div>")
 
 
+def gs_name(n):
+    """GotSport flight names carry a ranking suffix like '- 57' or '- 8-c'."""
+    return re.sub(r"\s*-\s*\d+(-c)?\s*$", "", (n or "").strip())
+
+
+def render_tourney_note(a):
+    c = a["gs_counted"]
+    if not c:
+        return ""
+    league = {g[s] for g in c for s in ("home", "away") if g[s] in a["teams"]}
+    return (f'<div class="banner info"><b>Tournament results are helping.</b><p>{len(c)} tournament games since Aug 1 '
+            f"connect {len(league)} league teams, either head-to-head or through shared opponents. They count at half weight.</p></div>")
+
+
 def render_flags(a):
     if not a["flags"]:
         return ""
@@ -417,7 +440,23 @@ def render_teams(a):
             else:
                 right = f'<span class="muted">{e(g["time"])}</span>'
             rows.append(f'<tr><td class="l muted">{nice_date(g["date"])}</td><td class="l">{vs}</td><td>{right}</td></tr>')
+        mine = [g for g in a["gs_games"] if t in (g["home"], g["away"])]
+        if mine:
+            rows.append('<tr class="tier"><td colspan="3">Tournaments since Aug 1 · GotSport</td></tr>')
+        for g in mine:
+            home = g["home"] == t
+            gf, ga = (g["hs"], g["as"]) if home else (g["as"], g["hs"])
+            res = "W" if gf > ga else "D" if gf == ga else "L"
+            opp = gs_name(g["away_name"] if home else g["home_name"])
+            tag = "counted at ½ weight" if g in a["gs_counted"] else "not counted"
+            rows.append(f'<tr><td class="l muted">{nice_date(g["date"])}</td>'
+                        f'<td class="l">v {e(opp)}<br><span class="muted small">{e(g["event"])} · {tag}</span></td>'
+                        f'<td><span class="{res}">{res}</span> {gf}–{ga}</td></tr>')
+        if t in a["gs_mapping"] and not a["gs_mapping"][t]["gotsport"]:
+            rows.append('<tr><td class="l muted small" colspan="3">Not matched to a GotSport team yet, so tournament games aren\'t shown.</td></tr>')
         pod = f' · Pod {a["pod_of"][t]}' if a["pod_of"] and not a["connected"] else ""
+        if mine:
+            pod += f" · {len(mine)} tournament"
         out.append(f'<details><summary><span class="tm">{team_cell(a, t)}</span>'
                    f'<span class="muted small">{x["w"]}-{x["l"]}-{x["d"]} · {x["pts"]} pts{pod}</span></summary>'
                    f'<div class="body scroll"><p class="muted small" style="margin:0 0 6px">{e(a["teams"][t]["club"])}</p>'
@@ -427,6 +466,19 @@ def render_teams(a):
 
 def render_method(a):
     k = a["knobs"]
+    st, gsg = a["gs_status"], a["gs_games"]
+    gsg = [g for g in gsg if g["home"] in a["teams"] or g["away"] in a["teams"]]  # skip outside-only bracket games
+    gteams = {g[s] for g in gsg for s in ("home", "away") if g[s] in a["teams"]}
+    unmatched = [m["name"] for m in a["gs_mapping"].values() if not m["gotsport"]]
+    checked = (dt.datetime.fromisoformat(st["last_success"]).astimezone(TZ).strftime("%b %-d")
+               if st.get("last_success") else "never")
+    gs_txt = (f"<li><b>Tournaments:</b> {len(gsg)} games since Aug 1 found on GotSport for {len(gteams)} league teams. "
+              "A tournament game counts, at half weight, only when it helps compare league teams "
+              f"(they met, or share an opponent); so far {len(a['gs_counted'])} do. The rest are listed on team pages. "
+              f"Last checked {checked}."
+              + (" ⚠️ GotSport blocked the latest check, so this uses saved data." if st.get("blocked") else "")
+              + (f" Not yet matched on GotSport: {e(', '.join(unmatched))}." if unmatched else "")
+              + " Tournaments run on other platforms aren't included.</li>")
     cc = a["cross_check"]
     cc_txt = ("Official standings unavailable for cross-check." if cc is None else
               "Computed points match the official AthleteOne standings." if not cc else
@@ -445,7 +497,7 @@ def render_method(a):
 <li>With few games, big wins are capped and every team is pulled toward average. That loosens automatically as the season fills in
 (now: {k['games_per_team']:.1f} games per team, cap ±{k['cap']:g}, shrinkage {k['lam']:g}).</li>
 <li>Teams too close to separate share a rank (shown as T4, etc.).</li>
-<li>League games only. Tournaments and friendlies aren't in AthleteOne's data, so they aren't counted.</li>
+{gs_txt}
 <li>{cc_txt}</li>
 {clubs}
 </ul></div>"""
@@ -479,6 +531,7 @@ def render(a):
 <div class="stats">{''.join(f'<div class="stat"><b>{e(v)}</b>{e(l)}</div>' for v, l in stats)}</div>
 </header>
 {render_banner(a)}
+{render_tourney_note(a)}
 {render_ranking(a) if a['played'] else ''}
 {render_flags(a)}
 {render_fixtures(a)}
@@ -496,7 +549,7 @@ def main():
     args = ap.parse_args()
 
     meta, sched, standings, event = rank.fetch(EVENT_ID, FLIGHT_ID)
-    a = analyse(meta, sched, standings, event, args.simulate_until)
+    a = analyse(meta, sched, standings, event, args.simulate_until, gotsport.load_games())
 
     out = pathlib.Path(args.out)
     out.mkdir(parents=True, exist_ok=True)

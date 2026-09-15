@@ -1,0 +1,35 @@
+{
+ "team_id": 632726,
+ "team_name": "Challenge ECNL RL STXCL G14",
+ "events": [
+  {
+   "id": 44784,
+   "name": "2025 Texas Cup ",
+   "start": "2025-11-28",
+   "end": "2025-12-01"
+  },
+  {
+   "id": 46060,
+   "name": "U90C International Girls Cup of McKinney 2026",
+   "start": "2026-04-01",
+   "end": "2026-04-06"
+  },
+  {
+   "id": 50707,
+   "name": "ECNL Regional League Girls 2025-2026",
+   "start": "2025-09-06",
+   "end": "2026-06-07"
+  }
+ ],
+ "flights": {
+  "44784": [
+   447829
+  ],
+  "46060": [
+   402600
+  ],
+  "50707": [
+   477769
+  ]
+ }
+}

@@ -156,7 +156,7 @@ Each was tested and failed. Re-running them wastes time.
 | Looking for cross-pod games hidden inside STXCL | None exist. 120 games = full round-robin; pods are a matchday-1-2 artifact that dissolves on its own. |
 | AthleteOne team pages for outside-league games | Checked all 16. `overallWins/Draws/Losses` equals the event record for every team, and every `teamScheduleList` contains only `eventID: 4260`. AthleteOne knows nothing outside this league. |
 | `gotsport.com`, `system.gotsport.com` root | 403 / 202, Cloudflare-challenged. |
-| GotSport team-name search | **No public endpoint.** `system.gotsport.com/api/v1/team_ranking_data` ignores every query param tried (`search`, `q`, `team_name`, `filter[...]`, `age`, `gender`, `state`) and just returns the top-20 leaderboard. The rankings-site search box fires no API call at all. |
+| GotSport team-name search | ~~No public endpoint.~~ **Resolved 2026-09-15:** flat params are ignored, but nested `search[team_or_club_name]`, `search[gender]`, `search[age]`, `search[team_country]`, `search[team_association]` work. See §6 and §9. |
 | `youthsoccerrankings.us` | 503. |
 | Web search for these teams' tournament results | Only registration pages and noise. |
 | PlayMetrics | Public schedules are club-scoped and login-gated. |
@@ -177,7 +177,15 @@ And `system.gotsport.com/api/v1/team_ranking_data` returns, per team, an
 and points. That is exactly the cross-pod bridge we want — via shared tournament
 brackets.
 
-The blocker is narrow and specific: **no public name → team ID lookup.**
+~~The blocker is narrow and specific: **no public name → team ID lookup.**~~
+
+**Update 2026-09-15: the lookup exists.** The rankings SPA sends *nested* params, so
+`team_ranking_data?search[team_or_club_name]=LTFC&search[gender]=f&search[age]=14&search[team_country]=USA`
+filters properly (`search[team_association]=TXS` = Texas South). Flat `search=` etc. are
+ignored, which is why it looked dead. Confirmed match: LTFC → ranking id 78929144,
+"LTFC ECNL RL STXCL G2012/13". Rows carry both a ranking `id` and the real `team_id`.
+**Rate limit:** ~20 rapid requests got the IP 403'd by Cloudflare. Pace requests
+several seconds apart and cache responses to disk.
 
 If the user supplies even one GotSport team ID for any of these 16 teams,
 the unlock path is:
@@ -214,3 +222,15 @@ different rosters, different stakes, often different formats.
   numpy. Works for any AthleteOne flight; event and flight IDs come straight out
   of the public URL, so it covers other age groups and divisions unchanged.
 - `CLAUDE.md` — this file.
+
+---
+
+## 9. Tournament games (built 2026-09-15)
+
+`gotsport.py` runs before `build_site.py` in the Monday workflow.
+
+- **Scope:** games on or after **2026-08-01** only (Evan's rule).
+- **Mapping:** `gotsport/teams.json` maps AthleteOne teamID to GotSport `team_id`s. The four Lonestar teams are unmatched (candidates listed) until someone confirms them. Don't guess.
+- **Fetch:** `team_ranking_data?team_id=` gives events + flight ids, and `event_ranking_data/flight_matches` gives scores. It sleeps 8s between requests. A flight is re-pulled until 10 days after its event ends. The cache is committed, so a blocked run falls back to saved data (`gotsport/status.json` records it).
+- **Counting rule:** a tournament game enters the model only if its component in the tournament graph touches 2+ league teams (they met, or share an opponent). Those games are neutral-site, weight 0.5, and outside opponents become extra Massey/BT nodes. They don't touch W-L-D, points, SOS or adjusted PPG. Every other tournament game is shown on team pages only.
+- **Why:** a league team beating outside teams no other league team played says nothing about how it compares to league teams, and the ridge prior would otherwise treat those opponents as league-average.

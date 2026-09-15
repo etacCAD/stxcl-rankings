@@ -6,6 +6,7 @@ built from every completed league game (who played whom, and by what score).
 - `rank.py` — fetch from the AthleteOne API + ranking model (text report: `python3 rank.py 4260 41143`)
 - `build_site.py` — renders `site/index.html` and `site/data.json`; snapshots each matchday into `history/`
 - `.github/workflows/update.yml` — runs every Monday 8 AM CT (or manually via "Run workflow"), deploys to GitHub Pages, commits new snapshots
+- `gotsport.py` — pulls tournament games since Aug 1, 2026 from GotSport's rankings API (8s between requests), caching them in `gotsport/cache/`. A tournament game counts in the ranking at half weight only when it links 2+ league teams (head-to-head or a shared opponent); every other tournament game is shown on team pages only. Team matching lives in `gotsport/teams.json`, and the Lonestar teams still need confirming. If GotSport blocks a run, the saved cache is used.
 - `CLAUDE.md` — full method, the connectivity rule, and dead ends. Read before changing the model.
 
 Local preview:

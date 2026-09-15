@@ -1,0 +1,17 @@
+{
+ "team_id": 371945,
+ "team_name": "AHFC CENTRAL ECNL RL STXCL G2012/13",
+ "events": [
+  {
+   "id": 50707,
+   "name": "ECNL Regional League Girls 2025-2026",
+   "start": "2025-09-06",
+   "end": "2026-06-07"
+  }
+ ],
+ "flights": {
+  "50707": [
+   477769
+  ]
+ }
+}

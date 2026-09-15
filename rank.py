@@ -117,9 +117,12 @@ def parse(sched):
 # --- results graph -----------------------------------------------------------
 
 def components(team_ids, games):
+    """Groups of league teams linked by results. Games may include outside teams
+    ('gs:<id>' tournament opponents); they can link league teams but aren't returned."""
     parent = {t: t for t in team_ids}
 
     def find(x):
+        parent.setdefault(x, x)
         while parent[x] != x:
             parent[x] = parent[parent[x]]
             x = parent[x]
@@ -180,7 +183,9 @@ def result_pts(gf, ga):
     return 3 if gf > ga else (1 if gf == ga else 0)
 
 
-def build(team_ids, games):
+def build(team_ids, games, extra=()):
+    """games: league games (records, SOS, ratings). extra: weighted neutral-site games
+    (counted tournament games) that feed Massey/BT only and may involve outside teams."""
     team_ids = sorted(team_ids)
     idx = {t: i for i, t in enumerate(team_ids)}
     n = len(team_ids)
@@ -216,35 +221,45 @@ def build(team_ids, games):
     gpt = 2 * len(games) / n if n else 0
     k = knobs(gpt)
 
-    if games:
-        hi = np.array([idx[g["home"]] for g in games])
-        ai = np.array([idx[g["away"]] for g in games])
-        margin = np.array([g["hs"] - g["as"] for g in games], dtype=float)
+    # rating nodes: league teams, then outside teams from counted tournament games
+    all_games = [dict(g, w=1.0, neutral=False) for g in games] + list(extra)
+    outside = sorted({g[s] for g in extra for s in ("home", "away")} - set(team_ids), key=str)
+    nidx = {t: i for i, t in enumerate(team_ids + outside)}
+    N = len(nidx)
 
-        # Massey (ridge, capped margin)
-        X = np.zeros((len(games), n))
-        X[np.arange(len(games)), hi] = 1
-        X[np.arange(len(games)), ai] = -1
-        y = np.clip(margin, -k["cap"], k["cap"]) - HFA
-        massey = np.linalg.solve(X.T @ X + k["lam"] * np.eye(n), X.T @ y)
-        massey -= massey.mean()
+    if all_games:
+        rows = np.arange(len(all_games))
+        hi = np.array([nidx[g["home"]] for g in all_games])
+        ai = np.array([nidx[g["away"]] for g in all_games])
+        margin = np.array([g["hs"] - g["as"] for g in all_games], dtype=float)
+        wt = np.array([g.get("w", 1.0) for g in all_games])
+        home = np.array([0.0 if g.get("neutral") else 1.0 for g in all_games])
 
-        # Bradley-Terry (regularized logistic, gradient ascent), draws = 0.5
+        # Massey (weighted ridge, capped margin)
+        sw = np.sqrt(wt)
+        X = np.zeros((len(all_games), N))
+        X[rows, hi] = sw
+        X[rows, ai] = -sw
+        y = (np.clip(margin, -k["cap"], k["cap"]) - HFA * home) * sw
+        massey = np.linalg.solve(X.T @ X + k["lam"] * np.eye(N), X.T @ y)
+        massey -= massey[:n].mean()
+
+        # Bradley-Terry (weighted regularized logistic, gradient ascent), draws = 0.5
         res = np.where(margin > 0, 1.0, np.where(margin == 0, 0.5, 0.0))
-        w = np.zeros(n)
+        w = np.zeros(N)
         for _ in range(3000):
-            p = 1 / (1 + np.exp(-(w[hi] - w[ai] + BT_HFA)))
-            resid = res - p
-            grad = np.bincount(hi, resid, n) - np.bincount(ai, resid, n) - BT_L2 * w
+            p = 1 / (1 + np.exp(-(w[hi] - w[ai] + BT_HFA * home)))
+            resid = (res - p) * wt
+            grad = np.bincount(hi, resid, N) - np.bincount(ai, resid, N) - BT_L2 * w
             w += 0.1 * grad
-        w -= w.mean()
+        w -= w[:n].mean()
     else:
-        massey = np.zeros(n)
-        w = np.zeros(n)
+        massey = np.zeros(N)
+        w = np.zeros(N)
 
     for t in team_ids:
-        rec[t]["massey"] = float(massey[idx[t]])
-        rec[t]["bt"] = float(w[idx[t]])
+        rec[t]["massey"] = float(massey[nidx[t]])
+        rec[t]["bt"] = float(w[nidx[t]])
 
     def z(key):
         v = np.array([rec[t][key] for t in team_ids], dtype=float)

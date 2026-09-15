@@ -1,0 +1,35 @@
+{
+ "team_id": 163586,
+ "team_name": "Imperial SC ECNL RL G2012/13",
+ "events": [
+  {
+   "id": 45571,
+   "name": "2025 Bat City Cup",
+   "start": "2025-12-05",
+   "end": "2025-12-07"
+  },
+  {
+   "id": 52696,
+   "name": "Houston Memorial Day Cup 2026",
+   "start": "2026-05-23",
+   "end": "2026-05-24"
+  },
+  {
+   "id": 55130,
+   "name": "Houston Youth Cup 2026",
+   "start": "2026-08-22",
+   "end": "2026-08-24"
+  }
+ ],
+ "flights": {
+  "45571": [
+   398858
+  ],
+  "52696": [
+   504378
+  ],
+  "55130": [
+   535696
+  ]
+ }
+}

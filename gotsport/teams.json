@@ -1,0 +1,19 @@
+{
+ "_note": "AthleteOne league teamID -> GotSport team_id(s). Found 2026-09-15 via the rankings API name search. 'gotsport' ids are used; 'candidates' are NOT used until someone confirms which (if any) is the league team. Add the id to 'gotsport' to confirm.",
+ "133255": {"name": "LTFC", "gotsport": [388271]},
+ "80650": {"name": "AHFC CENTRAL I", "gotsport": [371945]},
+ "80651": {"name": "AHFC CENTRAL II", "gotsport": [96925]},
+ "80697": {"name": "AHFC EAST", "gotsport": [371943]},
+ "80293": {"name": "AHFC NW", "gotsport": [513016]},
+ "75524": {"name": "AHFC WEST", "gotsport": [371946]},
+ "114129": {"name": "Boerne Red", "gotsport": [367994]},
+ "129368": {"name": "Challenge", "gotsport": [632751, 632726]},
+ "131208": {"name": "FC Westlake", "gotsport": [510796, 363345]},
+ "59646": {"name": "Imperial SC", "gotsport": [163586]},
+ "128351": {"name": "SG1", "gotsport": [629929]},
+ "87636": {"name": "Sting CC Martinez", "gotsport": [381807]},
+ "133621": {"name": "Lonestar ATX White", "gotsport": [], "candidates": [665940, 666074, 488175]},
+ "132745": {"name": "Lonestar ATX NTH Gold", "gotsport": [], "candidates": [665940, 666074, 488175]},
+ "132758": {"name": "Lonestar ATX STH Gold", "gotsport": [], "candidates": [652833]},
+ "68555": {"name": "Lonestar SAT", "gotsport": [], "candidates": [161152, 161151]}
+}

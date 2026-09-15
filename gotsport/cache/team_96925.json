@@ -1,0 +1,35 @@
+{
+ "team_id": 96925,
+ "team_name": "AHFC CENTRAL ECNL RL STXCL G2012/13 II",
+ "events": [
+  {
+   "id": 48635,
+   "name": "2025 Lions FC Winter Blast",
+   "start": "2025-12-12",
+   "end": "2025-12-15"
+  },
+  {
+   "id": 50707,
+   "name": "ECNL Regional League Girls 2025-2026",
+   "start": "2025-09-06",
+   "end": "2026-06-07"
+  },
+  {
+   "id": 50739,
+   "name": "2026 Reliant Energy Power Cup",
+   "start": "2026-01-30",
+   "end": "2026-02-01"
+  }
+ ],
+ "flights": {
+  "48635": [
+   455915
+  ],
+  "50707": [
+   477769
+  ],
+  "50739": [
+   454686
+  ]
+ }
+}

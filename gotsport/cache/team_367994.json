@@ -1,0 +1,26 @@
+{
+ "team_id": 367994,
+ "team_name": "Boerne SC ECNL RL STXCL G2012/13 Red",
+ "events": [
+  {
+   "id": 42433,
+   "name": "Presidents' Day Tournament 2026",
+   "start": "2026-02-13",
+   "end": "2026-02-17"
+  },
+  {
+   "id": 50707,
+   "name": "ECNL Regional League Girls 2025-2026",
+   "start": "2025-09-06",
+   "end": "2026-06-07"
+  }
+ ],
+ "flights": {
+  "42433": [
+   365844
+  ],
+  "50707": [
+   477770
+  ]
+ }
+}

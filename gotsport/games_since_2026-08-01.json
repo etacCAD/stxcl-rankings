@@ -1,0 +1,27 @@
+{
+ "_source": "GotSport rankings API (team_ranking_data?team_id= -> events; event_ranking_data/flight_matches?flight_id=&event_id= -> scores). Pulled 2026-09-15 via Evan's Chrome, ~9s between requests.",
+ "_filter": "games on or after 2026-08-01 only",
+ "_coverage": "Checked GotSport candidates for all 16 league teams. Only 4 had GotSport-listed events since Aug 1. Lonestar ATX White / NTH Gold / STH Gold and Lonestar SAT matches to GotSport entries are uncertain.",
+ "mapping": {
+  "133255": {"league": "LTFC", "gotsport": 388271},
+  "80293": {"league": "AHFC NW", "gotsport": 513016},
+  "59646": {"league": "Imperial SC", "gotsport": 163586},
+  "87636": {"league": "Sting CC Martinez", "gotsport": 381807}
+ },
+ "games": [
+  {"date": "2026-08-15", "event": "BOB WISEMAN MEMORIAL 26", "event_id": 51790, "flight_id": 525676, "team": "LTFC", "opp": "Sting Brave ECNL RL NTX G2012/13", "opp_gs": 88993, "gf": 0, "ga": 3},
+  {"date": "2026-08-15", "event": "BOB WISEMAN MEMORIAL 26", "event_id": 51790, "flight_id": 525676, "team": "LTFC", "opp": "Sting Black ECNL RL NTX G2012/13", "opp_gs": 581362, "gf": 0, "ga": 2},
+  {"date": "2026-08-16", "event": "BOB WISEMAN MEMORIAL 26", "event_id": 51790, "flight_id": 525676, "team": "LTFC", "opp": "Sting Black ECNL RL NTX G2012/13", "opp_gs": 581362, "gf": 0, "ga": 0},
+  {"date": "2026-08-16", "event": "BOB WISEMAN MEMORIAL 26", "event_id": 51790, "flight_id": 525676, "team": "LTFC", "opp": "SOLAR ECNL RL NTX G2012/13", "opp_gs": 750298, "gf": 0, "ga": 3},
+  {"date": "2026-08-22", "event": "2026 Houston Warm-Up Cup", "event_id": 55539, "flight_id": 509544, "team": "AHFC NW", "opp": "RISE SC ECNL RL STXCL G2012/13", "opp_gs": 250352, "gf": 1, "ga": 0},
+  {"date": "2026-08-22", "event": "2026 Houston Warm-Up Cup", "event_id": 55539, "flight_id": 509544, "team": "AHFC NW", "opp": "Houstonians FC STXCL G2012/13", "opp_gs": 419966, "gf": 1, "ga": 2},
+  {"date": "2026-08-23", "event": "2026 Houston Warm-Up Cup", "event_id": 55539, "flight_id": 509544, "team": "AHFC NW", "opp": "BVFC Champions 2013G", "opp_gs": 401266, "gf": 1, "ga": 5},
+  {"date": "2026-08-22", "event": "Houston Youth Cup 2026", "event_id": 55130, "flight_id": 535696, "team": "Imperial SC", "opp": "GA 13/14 North", "opp_gs": 241432, "gf": 0, "ga": 1},
+  {"date": "2026-08-22", "event": "Houston Youth Cup 2026", "event_id": 55130, "flight_id": 535696, "team": "Imperial SC", "opp": "South U14 Aspire", "opp_gs": 491061, "gf": 3, "ga": 1},
+  {"date": "2026-08-23", "event": "Houston Youth Cup 2026", "event_id": 55130, "flight_id": 535696, "team": "Imperial SC", "opp": "N1 G2012/13 Green (TX)", "opp_gs": 73108, "gf": 3, "ga": 1},
+  {"date": "2026-08-22", "event": "11th Annual ADIDAS Fall Kickoff", "event_id": 55842, "flight_id": 512764, "team": "Sting CC Martinez", "opp": "Capital City SC U14G DPL", "opp_gs": 523464, "gf": 1, "ga": 1},
+  {"date": "2026-08-22", "event": "11th Annual ADIDAS Fall Kickoff", "event_id": 55842, "flight_id": 512764, "team": "Sting CC Martinez", "opp": "Aspire 12/13", "opp_gs": 642266, "gf": 1, "ga": 1},
+  {"date": "2026-08-23", "event": "11th Annual ADIDAS Fall Kickoff", "event_id": 55842, "flight_id": 512764, "team": "Sting CC Martinez", "opp": "SA United N1 G2012/13 (TX)", "opp_gs": 508599, "gf": 4, "ga": 0},
+  {"date": "2026-08-23", "event": "11th Annual ADIDAS Fall Kickoff", "event_id": 55842, "flight_id": 512764, "team": "Sting CC Martinez", "opp": "Capital City SC U14G DPL", "opp_gs": 523464, "gf": 2, "ga": 2}
+ ]
+}

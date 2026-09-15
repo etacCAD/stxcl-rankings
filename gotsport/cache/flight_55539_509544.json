@@ -1,0 +1,93 @@
+[
+ {
+  "id": 27082079,
+  "date": "2026-08-23",
+  "event_id": 55539,
+  "event": "2026 Houston Warm-Up Cup",
+  "division": "U14G U14 Girls - VOLT",
+  "home_id": 513016,
+  "home_name": "AHFC NW ECNL RL STXCL G2013/12",
+  "away_id": 401266,
+  "away_name": "BVFC Champions 2013G",
+  "hs": 1,
+  "as": 5
+ },
+ {
+  "id": 27082075,
+  "date": "2026-08-22",
+  "event_id": 55539,
+  "event": "2026 Houston Warm-Up Cup",
+  "division": "U14G U14 Girls - VOLT",
+  "home_id": 513016,
+  "home_name": "AHFC NW ECNL RL STXCL G2013/12",
+  "away_id": 250352,
+  "away_name": "RISE SC ECNL RL STXCL G2012/13",
+  "hs": 1,
+  "as": 0
+ },
+ {
+  "id": 27082077,
+  "date": "2026-08-22",
+  "event_id": 55539,
+  "event": "2026 Houston Warm-Up Cup",
+  "division": "U14G U14 Girls - VOLT",
+  "home_id": 250352,
+  "home_name": "RISE SC ECNL RL STXCL G2012/13",
+  "away_id": 401266,
+  "away_name": "BVFC Champions 2013G",
+  "hs": 0,
+  "as": 1
+ },
+ {
+  "id": 27082080,
+  "date": "2026-08-23",
+  "event_id": 55539,
+  "event": "2026 Houston Warm-Up Cup",
+  "division": "U14G U14 Girls - VOLT",
+  "home_id": 419966,
+  "home_name": "Houstonians FC STXCL G2012/13",
+  "away_id": 250352,
+  "away_name": "RISE SC ECNL RL STXCL G2012/13",
+  "hs": 0,
+  "as": 0
+ },
+ {
+  "id": 27082078,
+  "date": "2026-08-22",
+  "event_id": 55539,
+  "event": "2026 Houston Warm-Up Cup",
+  "division": "U14G U14 Girls - VOLT",
+  "home_id": 419966,
+  "home_name": "Houstonians FC STXCL G2012/13",
+  "away_id": 513016,
+  "away_name": "AHFC NW ECNL RL STXCL G2013/12",
+  "hs": 2,
+  "as": 1
+ },
+ {
+  "id": 27082130,
+  "date": "2026-08-23",
+  "event_id": 55539,
+  "event": "2026 Houston Warm-Up Cup",
+  "division": "U14G U14 Girls - VOLT",
+  "home_id": 401266,
+  "home_name": "BVFC Champions 2013G",
+  "away_id": 419966,
+  "away_name": "Houstonians FC STXCL G2012/13",
+  "hs": 1,
+  "as": 2
+ },
+ {
+  "id": 27082076,
+  "date": "2026-08-22",
+  "event_id": 55539,
+  "event": "2026 Houston Warm-Up Cup",
+  "division": "U14G U14 Girls - VOLT",
+  "home_id": 401266,
+  "home_name": "BVFC Champions 2013G",
+  "away_id": 419966,
+  "away_name": "Houstonians FC STXCL G2012/13",
+  "hs": 1,
+  "as": 0
+ }
+]

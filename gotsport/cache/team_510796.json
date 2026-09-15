@@ -1,0 +1,17 @@
+{
+ "team_id": 510796,
+ "team_name": "FC Westlake ECNL RL STXCL G13",
+ "events": [
+  {
+   "id": 50707,
+   "name": "ECNL Regional League Girls 2025-2026",
+   "start": "2025-09-06",
+   "end": "2026-06-07"
+  }
+ ],
+ "flights": {
+  "50707": [
+   477770
+  ]
+ }
+}

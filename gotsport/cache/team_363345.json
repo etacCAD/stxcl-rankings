@@ -1,0 +1,26 @@
+{
+ "team_id": 363345,
+ "team_name": "FC Westlake ECNL RL STXCL G14/13",
+ "events": [
+  {
+   "id": 47840,
+   "name": "18th Annual Copa San Antonio",
+   "start": "2026-02-14",
+   "end": "2026-02-15"
+  },
+  {
+   "id": 50707,
+   "name": "ECNL Regional League Girls 2025-2026",
+   "start": "2025-09-06",
+   "end": "2026-06-07"
+  }
+ ],
+ "flights": {
+  "47840": [
+   419953
+  ],
+  "50707": [
+   477770
+  ]
+ }
+}
