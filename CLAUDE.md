@@ -256,3 +256,14 @@ shows e.g. 1–0 and not the raw-mode 1–1. Upcoming games are grouped Mon–Su
 `<details>` panels (next week open). Matchups between teams not linked by results are guesses and
 labeled as such (once per panel if all are unlinked). Massey is ridge-shrunk early season, so
 estimates lean toward close scores. That's intended.
+
+## 12. Tracking how the estimates did (added 2026-09-15)
+
+`history/predictions.json` (keyed by AthleteOne matchID) holds the latest estimate for each game.
+Every non-simulated build overwrites estimates only for games whose date is **today or later**, so an
+estimate freezes once its game day arrives and grading always uses a pre-kickoff estimate.
+Grading (`grade()`) runs on played games that have a saved estimate: right result (W/D/L pick),
+exact score, and 3-way Brier score (pure guessing = 0.67; lower is better), split by linked
+matchups vs guesses. The first 16 games (Sep 12–13) predate tracking and aren't graded.
+`--simulate-until` grades against saved estimates but never writes them. Don't commit a
+predictions.json produced during a simulation.

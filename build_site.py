@@ -132,7 +132,7 @@ def analyse(meta, sched, standings, event, simulate_until=None, gs_games=()):
     prev = None
     hist = ROOT / "history"
     if last_date and hist.exists() and not simulate_until:
-        older = sorted(p for p in hist.glob("*.json") if p.stem < last_date)
+        older = sorted(p for p in hist.glob("20*.json") if p.stem < last_date)
         if older:
             prev = json.loads(older[-1].read_text())
 
@@ -161,6 +161,52 @@ def analyse(meta, sched, standings, event, simulate_until=None, gs_games=()):
         "cross_check": rank.cross_check(standings, rec) if not simulate_until else [],
         "big_clubs": big_clubs, "simulated": simulate_until,
     }
+
+
+PRED_FILE = ROOT / "history" / "predictions.json"
+
+
+def load_predictions():
+    try:
+        return json.loads(PRED_FILE.read_text())
+    except (OSError, ValueError):
+        return {}
+
+
+def update_predictions(a, store):
+    """Save the latest estimate for every game that hasn't happened yet. Once a game's date
+    arrives its estimate is frozen, so grading always uses what was predicted before kickoff."""
+    store = dict(store)
+    today = dt.datetime.now(TZ).date().isoformat()
+    for g in a["upcoming"]:
+        if g["date"] < today:
+            continue
+        p = rank.predict(a["rec"], g["home"], g["away"], a["gpg"])
+        store[str(g["id"])] = {
+            "made": today, "date": g["date"], "home": g["home"], "away": g["away"],
+            "hs": p["score"][0], "as": p["score"][1], "pick": p["pick"],
+            "p": [round(p["home"], 3), round(p["draw"], 3), round(p["away"], 3)],
+            "linked": is_linked(a, g),
+        }
+    return store
+
+
+def grade(a, store):
+    rows = []
+    for g in a["played"]:
+        s = store.get(str(g["id"]))
+        if not s:
+            continue
+        actual = "home" if g["hs"] > g["as"] else "draw" if g["hs"] == g["as"] else "away"
+        hit = [actual == k for k in ("home", "draw", "away")]
+        rows.append({
+            "game": g, "est": s, "actual": actual,
+            "right": s["pick"] == actual,
+            "exact": (s["hs"], s["as"]) == (g["hs"], g["as"]),
+            "brier": sum((p - o) ** 2 for p, o in zip(s["p"], hit)),
+            "linked": s["linked"],
+        })
+    return rows
 
 
 def snapshot(a):
@@ -233,6 +279,8 @@ details .body td.l.muted{white-space:nowrap}
 .fx .meta{grid-column:1/-1;text-align:center;font-size:12px;color:var(--muted);margin-top:-4px}
 .win{font-weight:700}
 ul.flags{margin:0;padding-left:18px}ul.flags li{margin:6px 0}
+.chip.ok{background:var(--okbg);border-color:var(--okline);color:var(--ink)}
+.chip.miss{color:var(--loss)}
 .fx.pred{padding:10px 0;row-gap:4px}
 .res.est{border:1px dashed var(--muted);border-radius:8px;padding:1px 8px;font-variant-numeric:tabular-nums}
 .pct{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
@@ -523,6 +571,60 @@ def prediction(a, g, label_guess=True):
     )
 
 
+def week_start(date):
+    d = dt.date.fromisoformat(date)
+    return d - dt.timedelta(days=d.weekday())
+
+
+def render_grades(a):
+    rows = a.get("graded") or []
+    out = ["<h2>How the estimates did</h2>"]
+    if not rows:
+        out.append('<div class="card small">Tracking starts with the next games. Each week\'s estimates are saved before kickoff '
+                   "and graded here once the results are posted.</div>")
+        return "".join(out)
+
+    n = len(rows)
+    right = sum(r["right"] for r in rows)
+    exact = sum(r["exact"] for r in rows)
+    brier = sum(r["brier"] for r in rows) / n
+    tiles = [(f"{right} of {n}", f"right result ({right / n:.0%})"),
+             (f"{exact} of {n}", "exact score"),
+             (f"{brier:.2f}", "accuracy score · pure guessing = 0.67 · lower is better")]
+    out.append('<div class="stats">' + "".join(f'<div class="stat"><b>{e(v)}</b>{e(l)}</div>' for v, l in tiles) + "</div>")
+    frac = lambda xs: f"{sum(r['right'] for r in xs)} of {len(xs)} right" if xs else "none yet"
+    out.append(f'<p class="sub small" style="margin-top:10px">Linked matchups: {frac([r for r in rows if r["linked"]])} · '
+               f'Guesses (teams not yet linked by results): {frac([r for r in rows if not r["linked"]])}.</p>')
+
+    name = lambda t: e(a["teams"][t]["name"])
+    weeks = {}
+    for r in rows:
+        weeks.setdefault(week_start(r["game"]["date"]), []).append(r)
+    for i, wk in enumerate(sorted(weeks, reverse=True)):
+        rs = weeks[wk]
+        first = min(r["game"]["date"] for r in rs)
+        last = max(r["game"]["date"] for r in rs)
+        label = nice_date(first) + (f" – {nice_date(last)}" if last != first else "")
+        body = []
+        for r in rs:
+            g, s = r["game"], r["est"]
+            hc = ' class="h win"' if g["hs"] > g["as"] else ' class="h"'
+            ac = ' class="win"' if g["as"] > g["hs"] else ""
+            marks = ('<span class="chip ok">✓ right result</span>' if r["right"] else '<span class="chip miss">✗ missed</span>')
+            if r["exact"]:
+                marks += ' <span class="chip ok">exact score</span>'
+            if not r["linked"]:
+                marks += ' <span class="chip">guess</span>'
+            body.append(f'<div class="fx"><div{hc}>{name(g["home"])}</div><div class="res">{g["hs"]}–{g["as"]}</div>'
+                        f'<div{ac}>{name(g["away"])}</div>'
+                        f'<div class="meta">Estimate {s["hs"]}–{s["as"]} · {marks}</div></div>')
+        wr = sum(r["right"] for r in rs)
+        op = " open" if i == 0 else ""
+        out.append(f'<details{op}><summary><span>{label}</span><span class="muted small">{wr} of {len(rs)} right</span></summary>'
+                   f'<div class="body">{"".join(body)}</div></details>')
+    return "".join(out)
+
+
 def render_fixtures(a):
     out = []
     if a["upcoming"]:
@@ -545,6 +647,7 @@ def render_fixtures(a):
                     "so every estimate here is a guess.</p>") if none_linked else ""
             out.append(f'<details{op}><summary><span>{label}</span><span class="muted small">{len(games)} games</span></summary>'
                        f'<div class="body">{note}{"".join(prediction(a, g, label_guess=not none_linked) for g in games)}</div></details>')
+    out.append(render_grades(a))
     if a["played"]:
         out.append("<h2>Results</h2>")
         by_date = collections.defaultdict(list)
@@ -687,6 +790,12 @@ def main():
 
     meta, sched, standings, event = rank.fetch(EVENT_ID, FLIGHT_ID)
     a = analyse(meta, sched, standings, event, args.simulate_until, gotsport.load_games())
+    store = load_predictions()
+    if not args.simulate_until:  # simulations grade against saved estimates but never save new ones
+        store = update_predictions(a, store)
+        PRED_FILE.parent.mkdir(exist_ok=True)
+        PRED_FILE.write_text(json.dumps(store, indent=1, sort_keys=True))
+    a["graded"] = grade(a, store)
 
     out = pathlib.Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
