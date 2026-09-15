@@ -146,6 +146,7 @@ def analyse(meta, sched, standings, event, simulate_until=None, gs_games=()):
         big_clubs.append({"club": club, "teams": n, "intra": intra})
 
     next_date = upcoming[0]["date"] if upcoming else None
+    gpg = sum(g["hs"] + g["as"] for g in played) / (2 * len(played)) if played else 1.5
     return {
         "meta": meta, "event": event, "teams": teams, "rec": rec, "knobs": k,
         "played": played, "upcoming": upcoming, "scheduled": len(played) + len(upcoming),
@@ -156,7 +157,7 @@ def analyse(meta, sched, standings, event, simulate_until=None, gs_games=()):
         "gs_games": gs_games, "gs_counted": counted,
         "gs_status": gotsport.load_status(), "gs_mapping": gotsport.load_mapping(),
         "overall": overall, "pts_rank": pts_rank, "flags": flags,
-        "prev": prev, "last_date": last_date, "next_date": next_date,
+        "prev": prev, "last_date": last_date, "next_date": next_date, "gpg": gpg,
         "cross_check": rank.cross_check(standings, rec) if not simulate_until else [],
         "big_clubs": big_clubs, "simulated": simulate_until,
     }
@@ -175,10 +176,10 @@ def snapshot(a):
 
 CSS = """
 :root{--bg:#f6f5f1;--card:#fff;--ink:#16181d;--muted:#5d6470;--line:#e4e2dc;--soft:#efede7;
---accent:#0f5bd8;--win:#127a45;--loss:#b3261e;--draw:#8a6d00;--warnbg:#fff4d6;--warnline:#e7c35a;
+--accent:#0f5bd8;--away:#c96a12;--win:#127a45;--loss:#b3261e;--draw:#8a6d00;--warnbg:#fff4d6;--warnline:#e7c35a;
 --okbg:#e4f4ea;--okline:#7cc49a;--infobg:#e6eefc;--infoline:#8fb0ec}
 @media (prefers-color-scheme:dark){:root{--bg:#111317;--card:#1a1d23;--ink:#eceef2;--muted:#9aa1ad;
---line:#2b2f37;--soft:#22262d;--accent:#7aa8ff;--win:#4cc584;--loss:#ff7b72;--draw:#e0c050;
+--line:#2b2f37;--soft:#22262d;--accent:#7aa8ff;--away:#f0a35e;--win:#4cc584;--loss:#ff7b72;--draw:#e0c050;
 --warnbg:#2e2714;--warnline:#7a6420;--okbg:#15291e;--okline:#2f6b47;--infobg:#172238;--infoline:#34528a}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
@@ -232,6 +233,14 @@ details .body td.l.muted{white-space:nowrap}
 .fx .meta{grid-column:1/-1;text-align:center;font-size:12px;color:var(--muted);margin-top:-4px}
 .win{font-weight:700}
 ul.flags{margin:0;padding-left:18px}ul.flags li{margin:6px 0}
+.fx.pred{padding:10px 0;row-gap:4px}
+.res.est{border:1px dashed var(--muted);border-radius:8px;padding:1px 8px;font-variant-numeric:tabular-nums}
+.pct{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.pct.c{text-align:center}.pct.home-c{color:var(--accent)}.pct.away-c{color:var(--away)}
+.probs{grid-column:1/-1;display:flex;height:6px;border-radius:99px;overflow:hidden;background:var(--soft)}
+.probs span{display:block;height:100%}
+.probs .ph{background:var(--accent)}.probs .pd{background:var(--line)}.probs .pa{background:var(--away)}
+.fx.pred .meta{margin-top:2px}
 ol.est{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 ol.est li{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .est-rank{font-size:22px;font-weight:800;min-width:30px;line-height:1.2;font-variant-numeric:tabular-nums}
@@ -492,17 +501,50 @@ def fixture(a, g, show_link=False):
             f'<div{ac}>{e(name(w))}</div>{meta}</div>')
 
 
+def is_linked(a, g):
+    return any(g["home"] in c and g["away"] in c for c in a["comps"])
+
+
+def prediction(a, g, label_guess=True):
+    name = lambda t: a["teams"][t]["name"]
+    h, w = g["home"], g["away"]
+    p = rank.predict(a["rec"], h, w, a["gpg"])
+    hc = ' class="h win"' if p["pick"] == "home" else ' class="h"'
+    ac = ' class="win"' if p["pick"] == "away" else ""
+    chip = ' <span class="chip">guess · no results link these teams yet</span>' if label_guess and not is_linked(a, g) else ""
+    pct = lambda v: f"{v * 100:.0f}%"
+    return (
+        f'<div class="fx pred"><div{hc}>{e(name(h))}</div><div class="res est">{p["score"][0]}–{p["score"][1]}</div><div{ac}>{e(name(w))}</div>'
+        f'<div class="pct h home-c">{pct(p["home"])}</div><div class="pct c">draw {pct(p["draw"])}</div><div class="pct away-c">{pct(p["away"])}</div>'
+        f'<div class="probs" role="img" aria-label="{e(name(h))} {pct(p["home"])}, draw {pct(p["draw"])}, {e(name(w))} {pct(p["away"])}">'
+        f'<span class="ph" style="width:{p["home"] * 100:.1f}%"></span><span class="pd" style="width:{p["draw"] * 100:.1f}%"></span>'
+        f'<span class="pa" style="width:{p["away"] * 100:.1f}%"></span></div>'
+        f'<div class="meta">{nice_date(g["date"])} · {e(g["time"])} · {e(g["venue"])}{chip}</div></div>'
+    )
+
+
 def render_fixtures(a):
     out = []
-    if a["next_date"]:
-        nxt = [g for g in a["upcoming"] if g["date"] == a["next_date"]]
-        more = sorted({g["date"] for g in a["upcoming"] if g["date"] != a["next_date"]})
-        nd = [d for d in more if (dt.date.fromisoformat(d) - dt.date.fromisoformat(a["next_date"])).days <= 1]
-        nxt += [g for g in a["upcoming"] if g["date"] in nd]
-        label = nice_date(a["next_date"]) + (f" – {nice_date(nd[-1])}" if nd else "")
-        out.append(f'<h2>Next up · {label}</h2><div class="card">'
-                   + "".join(fixture(a, g, show_link=not a["connected"] or any(l["played"] == 0 for l in a["links"])) for g in nxt)
-                   + "</div>")
+    if a["upcoming"]:
+        weekends = {}
+        for g in a["upcoming"]:
+            d = dt.date.fromisoformat(g["date"])
+            weekends.setdefault(d - dt.timedelta(days=d.weekday()), []).append(g)  # Mon–Sun week, so Fri joins its Sat/Sun
+        out.append('<h2>Upcoming games · score estimates</h2>'
+                   '<p class="sub small">Estimates come from the ratings: each side starts at the league scoring average '
+                   f'({a["gpg"]:.1f} goals per team per game), shifted by the rating gap plus a small home edge. '
+                   "The score shown is the likeliest scoreline for the likeliest result; the bar shows win / draw / win chances. "
+                   "With only a few games played these are rough, and games between pods that haven't met yet are guesses.</p>")
+        for i, key in enumerate(sorted(weekends)):
+            games = weekends[key]
+            first, last = min(g["date"] for g in games), max(g["date"] for g in games)
+            label = nice_date(first) + (f" – {nice_date(last)}" if last != first else "")
+            op = " open" if i == 0 else ""
+            none_linked = not any(is_linked(a, g) for g in games)
+            note = ('<p class="muted small" style="margin:0 0 4px">None of these matchups are linked by results yet, '
+                    "so every estimate here is a guess.</p>") if none_linked else ""
+            out.append(f'<details{op}><summary><span>{label}</span><span class="muted small">{len(games)} games</span></summary>'
+                       f'<div class="body">{note}{"".join(prediction(a, g, label_guess=not none_linked) for g in games)}</div></details>')
     if a["played"]:
         out.append("<h2>Results</h2>")
         by_date = collections.defaultdict(list)

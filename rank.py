@@ -19,6 +19,7 @@ Usage (text report, same spirit as the original script):
 import argparse
 import collections
 import json
+import math
 import urllib.request
 
 import numpy as np
@@ -269,6 +270,26 @@ def build(team_ids, games, extra=()):
     for t in team_ids:
         rec[t]["score"] = float(comp[idx[t]])
     return rec, {"games_per_team": gpt, **k}
+
+
+def predict(rec, home, away, goals_per_team, neutral=False):
+    """Score estimate: expected goals = league scoring level +/- half the Massey margin
+    (plus home edge), independent Poisson for win/draw/loss. The score shown is the
+    likeliest scoreline within the likeliest result, so a favorite never shows a draw."""
+    margin = rec[home]["massey"] - rec[away]["massey"] + (0.0 if neutral else HFA)
+    lh = max(0.15, goals_per_team + margin / 2)
+    la = max(0.15, goals_per_team - margin / 2)
+    ph = [math.exp(-lh) * lh ** k / math.factorial(k) for k in range(12)]
+    pa = [math.exp(-la) * la ** k / math.factorial(k) for k in range(12)]
+    grid = {(i, j): ph[i] * pa[j] for i in range(12) for j in range(12)}
+    total = sum(grid.values())
+    p_home = sum(p for (i, j), p in grid.items() if i > j) / total
+    p_draw = sum(p for (i, j), p in grid.items() if i == j) / total
+    p_away = max(0.0, 1 - p_home - p_draw)
+    pick = max((p_home, "home"), (p_draw, "draw"), (p_away, "away"))[1]
+    fits = {"home": lambda i, j: i > j, "draw": lambda i, j: i == j, "away": lambda i, j: i < j}[pick]
+    score = max((s for s in grid if fits(*s)), key=grid.get)
+    return {"home": p_home, "draw": p_draw, "away": p_away, "xg": (lh, la), "score": score, "pick": pick}
 
 
 def is_tie(a, b):

@@ -246,3 +246,13 @@ Evan explicitly asked for a forced order at the **top** of the page, overriding 
   counterpoint when the lower team has the better record or won head-to-head
 - label per gap: `clear` / `lean` / `coin flip` (gap < 0.15) / `educated guess` (no results link
   the two teams yet). Pod standings, tiers and full tables stay below it.
+
+## 11. Score estimates for upcoming games (added 2026-09-15)
+
+`rank.predict()`: expected goals = league goals-per-team-per-game ± half the Massey margin
+(+ `HFA` for the home side), floored at 0.15; independent Poisson gives win/draw/loss.
+The displayed score is the likeliest scoreline **within the likeliest result**, so a 40% favorite
+shows e.g. 1–0 and not the raw-mode 1–1. Upcoming games are grouped Mon–Sun in collapsible
+`<details>` panels (next week open). Matchups between teams not linked by results are guesses and
+labeled as such (once per panel if all are unlinked). Massey is ridge-shrunk early season, so
+estimates lean toward close scores. That's intended.
