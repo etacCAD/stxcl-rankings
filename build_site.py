@@ -216,6 +216,7 @@ summary:after{content:"+";color:var(--muted)}
 details[open] summary:after{content:"–"}
 details .body{padding:0 14px 12px}
 details .body td.l{white-space:normal}
+details .body td.l.muted{white-space:nowrap}
 .fx{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;padding:7px 0;border-top:1px solid var(--line)}
 .fx:first-child{border-top:0}
 .fx .h{text-align:right}.fx .res{font-weight:700;text-align:center;min-width:48px}
