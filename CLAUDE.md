@@ -235,3 +235,14 @@ different rosters, different stakes, often different formats.
 - **Also pulled:** every outside team that played a league team gets its own events and flights since Aug 1 pulled (at most once per 6 days), because that's where league–X–Y–league chains show up.
 - **Counting rule:** a tournament game enters the model only if it lies on a chain of **at most 3 games** between two *different* league teams (`MAX_CHAIN`): 1 = they met, 2 = shared opponent, 3 = their opponents played each other. Longer chains are too removed (Evan's call, 2026-09-15). Those games are neutral-site, weight 0.5, and outside opponents become extra Massey/BT nodes. They don't touch W-L-D, points, SOS or adjusted PPG. Every other tournament game is shown on team pages only.
 - **Why:** a league team beating outside teams no other league team played says nothing about how it compares to league teams, and the ridge prior would otherwise treat those opponents as league-average.
+
+## 10. Estimated power ranking (forced 1–16), added 2026-09-15
+
+Evan explicitly asked for a forced order at the **top** of the page, overriding §4's
+"never present a clean 1–16" rule. Keep it, but keep it honest:
+- order = composite rating; teams the model calls tied (`rank.is_tie`) are listed **alphabetically**
+- every team gets a one-line "why above the next team": head-to-head, a common opponent it did
+  better against, points per game, goal difference, schedule strength, plus an "even though…"
+  counterpoint when the lower team has the better record or won head-to-head
+- label per gap: `clear` / `lean` / `coin flip` (gap < 0.15) / `educated guess` (no results link
+  the two teams yet). Pod standings, tiers and full tables stay below it.

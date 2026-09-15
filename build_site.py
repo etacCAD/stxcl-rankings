@@ -149,7 +149,7 @@ def analyse(meta, sched, standings, event, simulate_until=None, gs_games=()):
     return {
         "meta": meta, "event": event, "teams": teams, "rec": rec, "knobs": k,
         "played": played, "upcoming": upcoming, "scheduled": len(played) + len(upcoming),
-        "connected": connected, "components": len(comps), "pods": pods, "pod_of": pod_of,
+        "connected": connected, "components": len(comps), "comps": comps, "pods": pods, "pod_of": pod_of,
         "pod_tables": pod_tables, "tiers": tiers, "links": links,
         "connects_on": rank.connects_on(ids, linked, upcoming),
         "bridges": rank.bridges(ids, linked) if connected else [],
@@ -232,6 +232,16 @@ details .body td.l.muted{white-space:nowrap}
 .fx .meta{grid-column:1/-1;text-align:center;font-size:12px;color:var(--muted);margin-top:-4px}
 .win{font-weight:700}
 ul.flags{margin:0;padding-left:18px}ul.flags li{margin:6px 0}
+ol.est{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ol.est li{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.est-rank{font-size:22px;font-weight:800;min-width:30px;line-height:1.2;font-variant-numeric:tabular-nums}
+.est-body{flex:1;min-width:0}
+.est-top{display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline;font-weight:600}
+.why{font-size:13.5px;margin-top:6px;line-height:1.45}
+.chip.conf{margin-right:4px;color:var(--ink)}
+.chip.clear{background:var(--okbg);border-color:var(--okline)}
+.chip.lean{background:var(--infobg);border-color:var(--infoline)}
+.chip.coin-flip,.chip.educated-guess{background:var(--warnbg);border-color:var(--warnline)}
 .method{color:var(--muted);font-size:14px}.method li{margin:5px 0}
 footer{margin-top:40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
 a{color:var(--accent)}
@@ -353,6 +363,89 @@ def render_banner(a):
                 + "".join(f"<p>{n}</p>" for n in notes) + "</div>")
     return ('<div class="banner ok"><b>Well connected.</b><p>Every team is linked to every other through multiple results, '
             "so the overall ranking is backed by evidence across the league.</p></div>")
+
+
+def estimated_order(a):
+    """Forced 1..N: rating order; teams the model calls tied are listed alphabetically."""
+    groups = {}
+    for r, t in a["overall"]:
+        groups.setdefault(r, []).append(t)
+    return [t for r in sorted(groups) for t in sorted(groups[r], key=lambda t: a["teams"][t]["name"].lower())]
+
+
+def _did(gf, ga):
+    return "beat" if gf > ga else "drew with" if gf == ga else "lost to"
+
+
+def why_above(a, t, u):
+    """(confidence label, html sentence) for why t sits directly above u."""
+    rec, name = a["rec"], lambda x: e(a["teams"][x]["name"])
+    x, y = rec[t], rec[u]
+    rank_of = dict((v, r) for r, v in a["overall"])
+    if rank_of[t] == rank_of[u]:
+        return "coin flip", f"Level with {name(u)} on the model, so they're listed alphabetically."
+
+    log = collections.defaultdict(list)
+    for g in a["played"]:
+        log[g["home"]].append((g["away"], g["hs"], g["as"]))
+        log[g["away"]].append((g["home"], g["as"], g["hs"]))
+
+    parts, against = [], []
+    for o, gf, ga in log[t]:
+        if o == u:
+            (against if gf < ga else parts).append(
+                f"they lost to {name(u)} {gf}–{ga} head-to-head" if gf < ga else f"{_did(gf, ga)} them {gf}–{ga} head-to-head")
+    for o in sorted({o for o, _, _ in log[t]} & {o for o, _, _ in log[u]} - {t, u}, key=lambda o: a["teams"][o]["name"]):
+        rt = next((gf, ga) for oo, gf, ga in log[t] if oo == o)
+        ru = next((gf, ga) for oo, gf, ga in log[u] if oo == o)
+        if rt[0] - rt[1] > ru[0] - ru[1]:
+            parts.append(f"{_did(*rt)} {name(o)} {rt[0]}–{rt[1]}, while {name(u)} {_did(*ru)} them {ru[0]}–{ru[1]}")
+            break
+    if x["ppg"] - y["ppg"] >= 0.5:
+        parts.append(f"more points per game ({x['ppg']:.1f} vs {y['ppg']:.1f})")
+    if x["gd"] - y["gd"] >= 2:
+        parts.append(f"better goal difference ({signed(x['gd'])} vs {signed(y['gd'])})")
+    if x["sos"] - y["sos"] >= 0.5:
+        parts.append(f"tougher opponents ({x['sos']:.1f} vs {y['sos']:.1f} pts/game in their other games)")
+
+    if y["ppg"] - x["ppg"] >= 0.5:
+        against.append(f"{name(u)} has more points per game ({y['ppg']:.1f} vs {x['ppg']:.1f})")
+    elif y["gd"] - x["gd"] >= 2:
+        against.append(f"{name(u)} has the better goal difference ({signed(y['gd'])} vs {signed(x['gd'])})")
+
+    gap = x["score"] - y["score"]
+    if not parts:
+        parts.append("slightly better on the combined rating" if gap < 0.5 else "better on the combined rating")
+    linked = any(t in c and u in c for c in a["comps"])
+    conf = ("coin flip" if gap < 0.15 else "educated guess" if not linked else "lean" if gap < 0.5 else "clear")
+    text = "; ".join(parts)
+    if against:
+        text += ", even though " + " and ".join(against)
+    text = text[0].upper() + text[1:]
+    if not linked:
+        text += ". No results link them yet, since they're in different pods"
+    return conf, f"Above {name(u)}: {text}."
+
+
+def render_estimated(a):
+    order = estimated_order(a)
+    items = []
+    for i, t in enumerate(order):
+        x = a["rec"][t]
+        if i + 1 < len(order):
+            conf, why = why_above(a, t, order[i + 1])
+            why_html = f'<div class="why"><span class="chip conf {conf.replace(" ", "-")}">{conf}</span> {why}</div>'
+        else:
+            why_html = '<div class="why muted">Last in the current order.</div>'
+        items.append(f'<li><span class="est-rank">{i + 1}</span><div class="est-body"><div class="est-top">{team_cell(a, t)}'
+                     f'<span class="muted small">{x["w"]}-{x["l"]}-{x["d"]} · {x["pts"]} pts · GD {signed(x["gd"])} · rating {x["score"]:+.2f}</span>'
+                     f'</div>{why_html}</div></li>')
+    note = ("" if a["connected"] else
+            " Right now the pods haven't played each other, so the order between teams from different pods is an educated guess.")
+    return ('<h2>Estimated power ranking</h2>'
+            '<p class="sub small">A forced 1–16 order from every result so far. Each line says why a team sits above the next one. '
+            '<b>Coin flip</b> means too close to call; exact ties are listed alphabetically.' + note + '</p>'
+            f'<ol class="est">{"".join(items)}</ol>')
 
 
 def gs_name(n):
@@ -531,6 +624,7 @@ def render(a):
 <p class="sub">Ranked on every completed league game — who each team played, and by how much.</p>
 <div class="stats">{''.join(f'<div class="stat"><b>{e(v)}</b>{e(l)}</div>' for v, l in stats)}</div>
 </header>
+{render_estimated(a) if a['played'] else ''}
 {render_banner(a)}
 {render_tourney_note(a)}
 {render_ranking(a) if a['played'] else ''}
@@ -560,7 +654,8 @@ def main():
         "connected": a["connected"],
         "components": a["components"],
         "teams": {a["teams"][t]["name"]: {**a["rec"][t], "rank": r} for r, t in a["overall"]},
-        "cross_check_mismatch": [a["teams"][t]["name"] for t in (a["cross_check"] or [])],
+        "estimated_order": [a["teams"][t]["name"] for t in estimated_order(a)] if a["played"] else [],
+        "cross_check_mismatch":[a["teams"][t]["name"] for t in (a["cross_check"] or [])],
     }, indent=1))
 
     if a["last_date"] and not args.simulate_until:
