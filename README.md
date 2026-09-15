@@ -1,0 +1,24 @@
+# STXCL GU14 Regional — Power Ranking
+
+Auto-updating ranking for ECNL RL Girls STXCL 2026-27, GU14 "Regional" flight,
+built from every completed league game (who played whom, and by what score).
+
+- `rank.py` — fetch from the AthleteOne API + ranking model (text report: `python3 rank.py 4260 41143`)
+- `build_site.py` — renders `site/index.html` and `site/data.json`; snapshots each matchday into `history/`
+- `.github/workflows/update.yml` — runs every Monday 8 AM CT (or manually via "Run workflow"), deploys to GitHub Pages, commits new snapshots
+- `CLAUDE.md` — full method, the connectivity rule, and dead ends. Read before changing the model.
+
+Local preview:
+
+```bash
+pip install numpy
+python3 build_site.py --out /tmp/stxcl && open /tmp/stxcl/index.html
+```
+
+`--simulate-until YYYY-MM-DD` fills unplayed games with random scores to preview later-season states.
+
+Other age groups: change `EVENT_ID` / `FLIGHT_ID` at the top of `build_site.py`
+(both come straight from the public AthleteOne URL).
+
+Note: GitHub pauses scheduled workflows after 60 days without a commit. Matchday
+snapshots keep it alive in season; after a long break, re-enable from the Actions tab.
