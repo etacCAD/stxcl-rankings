@@ -1,0 +1,93 @@
+[
+ {
+  "id": 27246603,
+  "date": "2026-09-07",
+  "event_id": 55450,
+  "event": "George Ostrander Plano Labor Day Invitational 2026",
+  "division": "U13G U13 Girls Gold",
+  "home_id": 88959,
+  "home_name": "SOLAR BLUE ECNL RL NTX G2013/14",
+  "away_id": 409762,
+  "away_name": "Revolution Premier SC N1 G2014/2015 Gold (TX)",
+  "hs": 2,
+  "as": 0
+ },
+ {
+  "id": 27246600,
+  "date": "2026-09-05",
+  "event_id": 55450,
+  "event": "George Ostrander Plano Labor Day Invitational 2026",
+  "division": "U13G U13 Girls Gold",
+  "home_id": 328954,
+  "home_name": "FC Dallas Youth Red ECNL RL NTX G2013/14",
+  "away_id": 88959,
+  "away_name": "SOLAR BLUE ECNL RL NTX G2013/14",
+  "hs": 1,
+  "as": 3
+ },
+ {
+  "id": 27246602,
+  "date": "2026-09-06",
+  "event_id": 55450,
+  "event": "George Ostrander Plano Labor Day Invitational 2026",
+  "division": "U13G U13 Girls Gold",
+  "home_id": 409762,
+  "home_name": "Revolution Premier SC N1 G2014/2015 Gold (TX)",
+  "away_id": 88959,
+  "away_name": "SOLAR BLUE ECNL RL NTX G2013/14",
+  "hs": 1,
+  "as": 3
+ },
+ {
+  "id": 27246601,
+  "date": "2026-09-06",
+  "event_id": 55450,
+  "event": "George Ostrander Plano Labor Day Invitational 2026",
+  "division": "U13G U13 Girls Gold",
+  "home_id": 736361,
+  "home_name": "Aspire 13/14",
+  "away_id": 328954,
+  "away_name": "FC Dallas Youth Red ECNL RL NTX G2013/14",
+  "hs": 0,
+  "as": 2
+ },
+ {
+  "id": 27246598,
+  "date": "2026-09-04",
+  "event_id": 55450,
+  "event": "George Ostrander Plano Labor Day Invitational 2026",
+  "division": "U13G U13 Girls Gold",
+  "home_id": 328954,
+  "home_name": "FC Dallas Youth Red ECNL RL NTX G2013/14",
+  "away_id": 409762,
+  "away_name": "Revolution Premier SC N1 G2014/2015 Gold (TX)",
+  "hs": 1,
+  "as": 1
+ },
+ {
+  "id": 27246599,
+  "date": "2026-09-05",
+  "event_id": 55450,
+  "event": "George Ostrander Plano Labor Day Invitational 2026",
+  "division": "U13G U13 Girls Gold",
+  "home_id": 736361,
+  "home_name": "Aspire 13/14",
+  "away_id": 409762,
+  "away_name": "Revolution Premier SC N1 G2014/2015 Gold (TX)",
+  "hs": 0,
+  "as": 4
+ },
+ {
+  "id": 27246597,
+  "date": "2026-09-05",
+  "event_id": 55450,
+  "event": "George Ostrander Plano Labor Day Invitational 2026",
+  "division": "U13G U13 Girls Gold",
+  "home_id": 736361,
+  "home_name": "Aspire 13/14",
+  "away_id": 88959,
+  "away_name": "SOLAR BLUE ECNL RL NTX G2013/14",
+  "hs": 0,
+  "as": 7
+ }
+]

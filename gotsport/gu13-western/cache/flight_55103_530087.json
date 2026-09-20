@@ -1,0 +1,93 @@
+[
+ {
+  "id": 26555893,
+  "date": "2026-08-30",
+  "event_id": 55103,
+  "event": "2026 Austin Cup",
+  "division": "U13G U13 GIRLS GOLD",
+  "home_id": 174337,
+  "home_name": "Capital City SC U13 GA Aspire",
+  "away_id": 766347,
+  "away_name": "FC Westlake North ECNL RL STXCL G2014/15",
+  "hs": 1,
+  "as": 3
+ },
+ {
+  "id": 26555895,
+  "date": "2026-08-30",
+  "event_id": 55103,
+  "event": "2026 Austin Cup",
+  "division": "U13G U13 GIRLS GOLD",
+  "home_id": 766347,
+  "home_name": "FC Westlake North ECNL RL STXCL G2014/15",
+  "away_id": 174337,
+  "away_name": "Capital City SC U13 GA Aspire",
+  "hs": 3,
+  "as": 2
+ },
+ {
+  "id": 26555889,
+  "date": "2026-08-29",
+  "event_id": 55103,
+  "event": "2026 Austin Cup",
+  "division": "U13G U13 GIRLS GOLD",
+  "home_id": 174337,
+  "home_name": "Capital City SC U13 GA Aspire",
+  "away_id": 733461,
+  "away_name": "SGA N1 G2013/14 (TX)",
+  "hs": 4,
+  "as": 2
+ },
+ {
+  "id": 26555892,
+  "date": "2026-08-29",
+  "event_id": 55103,
+  "event": "2026 Austin Cup",
+  "division": "U13G U13 GIRLS GOLD",
+  "home_id": 500895,
+  "home_name": "LTFC U13G Premier Red",
+  "away_id": 174337,
+  "away_name": "Capital City SC U13 GA Aspire",
+  "hs": 0,
+  "as": 3
+ },
+ {
+  "id": 26555894,
+  "date": "2026-08-30",
+  "event_id": 55103,
+  "event": "2026 Austin Cup",
+  "division": "U13G U13 GIRLS GOLD",
+  "home_id": 500895,
+  "home_name": "LTFC U13G Premier Red",
+  "away_id": 733461,
+  "away_name": "SGA N1 G2013/14 (TX)",
+  "hs": 1,
+  "as": 4
+ },
+ {
+  "id": 26555890,
+  "date": "2026-08-29",
+  "event_id": 55103,
+  "event": "2026 Austin Cup",
+  "division": "U13G U13 GIRLS GOLD",
+  "home_id": 766347,
+  "home_name": "FC Westlake North ECNL RL STXCL G2014/15",
+  "away_id": 500895,
+  "away_name": "LTFC U13G Premier Red",
+  "hs": 2,
+  "as": 1
+ },
+ {
+  "id": 26555891,
+  "date": "2026-08-29",
+  "event_id": 55103,
+  "event": "2026 Austin Cup",
+  "division": "U13G U13 GIRLS GOLD",
+  "home_id": 733461,
+  "home_name": "SGA N1 G2013/14 (TX)",
+  "away_id": 766347,
+  "away_name": "FC Westlake North ECNL RL STXCL G2014/15",
+  "hs": 1,
+  "as": 4
+ }
+]

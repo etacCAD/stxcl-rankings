@@ -1,0 +1,36 @@
+{
+ "team_id": 363147,
+ "team_name": "North U13G DPL",
+ "pulled": "2026-09-20",
+ "events": [
+  {
+   "id": 41948,
+   "name": "Development Player League 25/26",
+   "start": "2025-08-01",
+   "end": "2026-07-31"
+  },
+  {
+   "id": 47252,
+   "name": "2025 DPL Western Regional, U13/U14 - Provo, Utah",
+   "start": "2025-10-02",
+   "end": "2025-10-06"
+  },
+  {
+   "id": 55130,
+   "name": "Houston Youth Cup 2026",
+   "start": "2026-08-22",
+   "end": "2026-08-24"
+  }
+ ],
+ "flights": {
+  "41948": [
+   393947
+  ],
+  "47252": [
+   412492
+  ],
+  "55130": [
+   535690
+  ]
+ }
+}

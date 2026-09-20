@@ -1,0 +1,45 @@
+{
+ "team_id": 510347,
+ "team_name": "LIONS FC ECNL RL STXCL G2013/14 RED",
+ "pulled": "2026-09-20",
+ "events": [
+  {
+   "id": 46278,
+   "name": "Western Conference - Tier 2",
+   "start": "2025-09-06",
+   "end": "2026-04-27"
+  },
+  {
+   "id": 49175,
+   "name": "Winter Classic 2025",
+   "start": "2025-12-06",
+   "end": "2025-12-07"
+  },
+  {
+   "id": 51783,
+   "name": "SAN ANTONIO LABOR CUP 26",
+   "start": "2026-09-05",
+   "end": "2026-09-08"
+  },
+  {
+   "id": 55842,
+   "name": "11th Annual ADIDAS Fall Kickoff",
+   "start": "2026-08-22",
+   "end": "2026-08-23"
+  }
+ ],
+ "flights": {
+  "46278": [
+   412365
+  ],
+  "49175": [
+   433160
+  ],
+  "51783": [
+   539889
+  ],
+  "55842": [
+   512758
+  ]
+ }
+}

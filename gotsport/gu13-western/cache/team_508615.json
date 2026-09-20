@@ -1,0 +1,72 @@
+{
+ "team_id": 508615,
+ "team_name": "SA United N1 G2013/14 (TX)",
+ "pulled": "2026-09-20",
+ "events": [
+  {
+   "id": 43909,
+   "name": "WDDOA Flight 2 - Challenger (25-26)",
+   "start": "2025-09-06",
+   "end": "2026-03-30"
+  },
+  {
+   "id": 48635,
+   "name": "2025 Lions FC Winter Blast",
+   "start": "2025-12-12",
+   "end": "2025-12-15"
+  },
+  {
+   "id": 49175,
+   "name": "Winter Classic 2025",
+   "start": "2025-12-06",
+   "end": "2025-12-07"
+  },
+  {
+   "id": 50978,
+   "name": "16th Annual United for Hope",
+   "start": "2026-02-07",
+   "end": "2026-02-08"
+  },
+  {
+   "id": 51527,
+   "name": "2026 Directors Cup",
+   "start": "2026-03-28",
+   "end": "2026-05-12"
+  },
+  {
+   "id": 53054,
+   "name": "4th Annual La Panaderia Spring Classic",
+   "start": "2026-05-02",
+   "end": "2026-05-03"
+  },
+  {
+   "id": 55842,
+   "name": "11th Annual ADIDAS Fall Kickoff",
+   "start": "2026-08-22",
+   "end": "2026-08-23"
+  }
+ ],
+ "flights": {
+  "43909": [
+   382132
+  ],
+  "48635": [
+   455915
+  ],
+  "49175": [
+   433160
+  ],
+  "50978": [
+   458410
+  ],
+  "51527": [
+   465716
+  ],
+  "53054": [
+   483878
+  ],
+  "55842": [
+   512758
+  ]
+ }
+}

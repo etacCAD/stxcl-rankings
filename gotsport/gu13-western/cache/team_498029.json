@@ -1,0 +1,63 @@
+{
+ "team_id": 498029,
+ "team_name": "Boerne SC ECNL RL STXCL G2013/14 Red",
+ "pulled": "2026-09-20",
+ "events": [
+  {
+   "id": 45302,
+   "name": "2025 Oklahoma Winter Championship and Showcase",
+   "start": "2025-12-12",
+   "end": "2025-12-14"
+  },
+  {
+   "id": 46279,
+   "name": "Western Conference - Tier 1",
+   "start": "2025-09-06",
+   "end": "2026-04-27"
+  },
+  {
+   "id": 47840,
+   "name": "18th Annual Copa San Antonio",
+   "start": "2026-02-14",
+   "end": "2026-02-15"
+  },
+  {
+   "id": 47841,
+   "name": "16th Annual Copa Primavera",
+   "start": "2026-05-09",
+   "end": "2026-05-10"
+  },
+  {
+   "id": 53054,
+   "name": "4th Annual La Panaderia Spring Classic",
+   "start": "2026-05-02",
+   "end": "2026-05-03"
+  },
+  {
+   "id": 55842,
+   "name": "11th Annual ADIDAS Fall Kickoff",
+   "start": "2026-08-22",
+   "end": "2026-08-23"
+  }
+ ],
+ "flights": {
+  "45302": [
+   453990
+  ],
+  "46279": [
+   412341
+  ],
+  "47840": [
+   419942
+  ],
+  "47841": [
+   420009
+  ],
+  "53054": [
+   483878
+  ],
+  "55842": [
+   512758
+  ]
+ }
+}

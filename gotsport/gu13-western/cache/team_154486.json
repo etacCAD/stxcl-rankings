@@ -1,0 +1,36 @@
+{
+ "team_id": 154486,
+ "team_name": "ECNL RL STXCL G2013/14 Green",
+ "pulled": "2026-09-20",
+ "events": [
+  {
+   "id": 45339,
+   "name": "PREMIER CUP 26",
+   "start": "2026-03-07",
+   "end": "2026-03-08"
+  },
+  {
+   "id": 46279,
+   "name": "Western Conference - Tier 1",
+   "start": "2025-09-06",
+   "end": "2026-04-27"
+  },
+  {
+   "id": 55130,
+   "name": "Houston Youth Cup 2026",
+   "start": "2026-08-22",
+   "end": "2026-08-24"
+  }
+ ],
+ "flights": {
+  "45339": [
+   479359
+  ],
+  "46279": [
+   412341
+  ],
+  "55130": [
+   535690
+  ]
+ }
+}

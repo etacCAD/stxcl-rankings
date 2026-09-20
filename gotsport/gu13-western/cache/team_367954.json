@@ -1,0 +1,45 @@
+{
+ "team_id": 367954,
+ "team_name": "Solar Byars 14G",
+ "pulled": "2026-09-20",
+ "events": [
+  {
+   "id": 41032,
+   "name": "2025 NTX Celtic Snowball Cup",
+   "start": "2025-12-12",
+   "end": "2025-12-14"
+  },
+  {
+   "id": 44745,
+   "name": "Girls Classic League 2025-26",
+   "start": "2025-07-01",
+   "end": "2026-05-11"
+  },
+  {
+   "id": 49863,
+   "name": "Solar Winter Cup 2026",
+   "start": "2026-01-10",
+   "end": "2026-01-11"
+  },
+  {
+   "id": 51790,
+   "name": "BOB WISEMAN MEMORIAL 26",
+   "start": "2026-08-14",
+   "end": "2026-08-17"
+  }
+ ],
+ "flights": {
+  "41032": [
+   347548
+  ],
+  "44745": [
+   391933
+  ],
+  "49863": [
+   462833
+  ],
+  "51790": [
+   525533
+  ]
+ }
+}

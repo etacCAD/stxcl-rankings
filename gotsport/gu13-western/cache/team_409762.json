@@ -1,0 +1,90 @@
+{
+ "team_id": 409762,
+ "team_name": "Revolution Premier SC N1 G2014/2013Gold (TX)",
+ "pulled": "2026-09-20",
+ "events": [
+  {
+   "id": 41032,
+   "name": "2025 NTX Celtic Snowball Cup",
+   "start": "2025-12-12",
+   "end": "2025-12-14"
+  },
+  {
+   "id": 44745,
+   "name": "Girls Classic League 2025-26",
+   "start": "2025-07-01",
+   "end": "2026-05-11"
+  },
+  {
+   "id": 44784,
+   "name": "2025 Texas Cup ",
+   "start": "2025-11-28",
+   "end": "2025-12-01"
+  },
+  {
+   "id": 45488,
+   "name": "Dallas Cup 2026",
+   "start": "2026-03-29",
+   "end": "2026-04-06"
+  },
+  {
+   "id": 49863,
+   "name": "Solar Winter Cup 2026",
+   "start": "2026-01-10",
+   "end": "2026-01-11"
+  },
+  {
+   "id": 50128,
+   "name": "Surf Cup Texas 2026",
+   "start": "2026-05-23",
+   "end": "2026-05-26"
+  },
+  {
+   "id": 51406,
+   "name": "2026 North Texas Soccer State Cup",
+   "start": "2026-04-30",
+   "end": "2026-05-11"
+  },
+  {
+   "id": 51790,
+   "name": "BOB WISEMAN MEMORIAL 26",
+   "start": "2026-08-14",
+   "end": "2026-08-17"
+  },
+  {
+   "id": 55450,
+   "name": "George Ostrander Plano Labor Day Invitational 2026",
+   "start": "2026-09-04",
+   "end": "2026-09-08"
+  }
+ ],
+ "flights": {
+  "41032": [
+   347549
+  ],
+  "44745": [
+   391931
+  ],
+  "44784": [
+   453090
+  ],
+  "45488": [
+   398133
+  ],
+  "49863": [
+   443027
+  ],
+  "50128": [
+   446183
+  ],
+  "51406": [
+   472722
+  ],
+  "51790": [
+   525533
+  ],
+  "55450": [
+   539120
+  ]
+ }
+}

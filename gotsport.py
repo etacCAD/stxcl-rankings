@@ -237,8 +237,11 @@ def split_counted(games, league_ids, max_chain=MAX_CHAIN):
 
 
 def main():
+    only = sys.argv[1] if len(sys.argv) > 1 else None  # optional slug: refresh just one league
     leagues = json.loads((BASE.parent / "leagues.json").read_text())
     for cfg in leagues:
+        if only is not None and cfg.get("slug", "") != only:
+            continue
         use_league(cfg.get("slug", ""))
         name = cfg.get("name", "?")
         if not load_mapping():

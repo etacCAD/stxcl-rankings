@@ -1,0 +1,18 @@
+{
+ "team_id": 795407,
+ "team_name": "AHFC PRE-ECNL BLUE STXCL EC GU11",
+ "pulled": "2026-09-20",
+ "events": [
+  {
+   "id": 55130,
+   "name": "Houston Youth Cup 2026",
+   "start": "2026-08-22",
+   "end": "2026-08-24"
+  }
+ ],
+ "flights": {
+  "55130": [
+   535690
+  ]
+ }
+}

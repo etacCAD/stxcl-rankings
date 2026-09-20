@@ -1,0 +1,45 @@
+{
+ "team_id": 501369,
+ "team_name": "LTFC ECNL RL STXCL G2013/14",
+ "pulled": "2026-09-20",
+ "events": [
+  {
+   "id": 45336,
+   "name": "FALL PREMIER SHOWCASE",
+   "start": "2025-11-14",
+   "end": "2025-11-17"
+  },
+  {
+   "id": 46279,
+   "name": "Western Conference - Tier 1",
+   "start": "2025-09-06",
+   "end": "2026-04-27"
+  },
+  {
+   "id": 49565,
+   "name": "Target USA CUP Qualifier Texas",
+   "start": "2026-02-06",
+   "end": "2026-02-09"
+  },
+  {
+   "id": 51790,
+   "name": "BOB WISEMAN MEMORIAL 26",
+   "start": "2026-08-14",
+   "end": "2026-08-17"
+  }
+ ],
+ "flights": {
+  "45336": [
+   443418
+  ],
+  "46279": [
+   412341
+  ],
+  "49565": [
+   439389
+  ],
+  "51790": [
+   525533
+  ]
+ }
+}

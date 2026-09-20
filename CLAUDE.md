@@ -277,3 +277,18 @@ and `gotsport.use_league()` repoint the module-level paths — call one of them 
 touches league data. `build_site.py` loops all leagues (`--slug` builds one); `gotsport.py` loops
 too and skips leagues with no `teams.json`. `add_league.py` looks up a flight, prints its teams,
 and appends it. The page header renders a toggle between leagues.
+
+## 14. GU13 Western GotSport mapping (2026-09-20)
+
+`gotsport/gu13-western/teams.json`. Searched the rankings API by club name for girls U13 **and**
+U14 (these are G2013/14 teams), USA, and paged through every result — Lonestar returned 17 rows
+total and Westlake 9, so page 1 was the whole set.
+
+Mapped: Boerne SC Red 498029 · LTFC 501369 · Lions FC RED 510347 · Pflugerville Green 154486 ·
+TC Premier SC 388581 (all named "...ECNL RL STXCL G2013/14...", exact matches).
+
+**Not mapped on purpose:** the four Lonestar ATX teams, both Lonestar SAT teams, and the three
+FC Westlake teams. GotSport has no ECNL RL STXCL G2013/14 entry for them; the near-misses are
+either N1 registrations (FC Westlake Central/North) or entries that are already candidates for the
+GU14 flight's teams. A wrong id credits another team's games, so they stay in `candidates` until
+someone confirms. Same reason the GU14 Lonestar teams are unmapped.

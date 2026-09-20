@@ -1,0 +1,93 @@
+[
+ {
+  "id": 27373271,
+  "date": "2026-08-30",
+  "event_id": 56418,
+  "event": "16th Annual Copa Del Rey",
+  "division": "U13G U13 Girls Silver",
+  "home_id": 512291,
+  "home_name": "Sting CC N1 G2013/14 Shaw (TX)",
+  "away_id": 642267,
+  "away_name": "Aspire 13/14",
+  "hs": 0,
+  "as": 1
+ },
+ {
+  "id": 27373272,
+  "date": "2026-08-29",
+  "event_id": 56418,
+  "event": "16th Annual Copa Del Rey",
+  "division": "U13G U13 Girls Silver",
+  "home_id": 642267,
+  "home_name": "Aspire 13/14",
+  "away_id": 739334,
+  "away_name": "SA City SC U13G Red",
+  "hs": 4,
+  "as": 0
+ },
+ {
+  "id": 27373268,
+  "date": "2026-08-28",
+  "event_id": 56418,
+  "event": "16th Annual Copa Del Rey",
+  "division": "U13G U13 Girls Silver",
+  "home_id": 642267,
+  "home_name": "Aspire 13/14",
+  "away_id": 510031,
+  "away_name": "SA Athenians 13/14 Girls",
+  "hs": 1,
+  "as": 0
+ },
+ {
+  "id": 27373270,
+  "date": "2026-08-30",
+  "event_id": 56418,
+  "event": "16th Annual Copa Del Rey",
+  "division": "U13G U13 Girls Silver",
+  "home_id": 510031,
+  "home_name": "SA Athenians 13/14 Girls",
+  "away_id": 739334,
+  "away_name": "SA City SC U13G Red",
+  "hs": 2,
+  "as": 1
+ },
+ {
+  "id": 27373269,
+  "date": "2026-08-29",
+  "event_id": 56418,
+  "event": "16th Annual Copa Del Rey",
+  "division": "U13G U13 Girls Silver",
+  "home_id": 739334,
+  "home_name": "SA City SC U13G Red",
+  "away_id": 512291,
+  "away_name": "Sting CC N1 G2013/14 Shaw (TX)",
+  "hs": 0,
+  "as": 1
+ },
+ {
+  "id": 27373274,
+  "date": "2026-08-30",
+  "event_id": 56418,
+  "event": "16th Annual Copa Del Rey",
+  "division": "U13G U13 Girls Silver",
+  "home_id": 642267,
+  "home_name": "Aspire 13/14",
+  "away_id": 512291,
+  "away_name": "Sting CC N1 G2013/14 Shaw (TX)",
+  "hs": 2,
+  "as": 0
+ },
+ {
+  "id": 27373273,
+  "date": "2026-08-29",
+  "event_id": 56418,
+  "event": "16th Annual Copa Del Rey",
+  "division": "U13G U13 Girls Silver",
+  "home_id": 512291,
+  "home_name": "Sting CC N1 G2013/14 Shaw (TX)",
+  "away_id": 510031,
+  "away_name": "SA Athenians 13/14 Girls",
+  "hs": 3,
+  "as": 0
+ }
+]

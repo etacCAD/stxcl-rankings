@@ -23,7 +23,10 @@ import math
 import re
 import urllib.request
 
-import numpy as np
+try:
+    import numpy as np
+except ModuleNotFoundError:  # only build() needs it; listing/adding leagues doesn't
+    np = None
 
 API = "https://api.athleteone.com/api"
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -188,6 +191,8 @@ def result_pts(gf, ga):
 
 
 def build(team_ids, games, extra=()):
+    if np is None:
+        raise SystemExit("numpy is required to rank: pip install numpy")
     """games: league games (records, SOS, ratings). extra: weighted neutral-site games
     (counted tournament games) that feed Massey/BT only and may involve outside teams."""
     team_ids = sorted(team_ids)

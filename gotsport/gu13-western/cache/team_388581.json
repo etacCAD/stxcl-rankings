@@ -1,0 +1,54 @@
+{
+ "team_id": 388581,
+ "team_name": "TC Premier SC ECNL RL STXCL G2013/14",
+ "pulled": "2026-09-20",
+ "events": [
+  {
+   "id": 45339,
+   "name": "PREMIER CUP 26",
+   "start": "2026-03-07",
+   "end": "2026-03-08"
+  },
+  {
+   "id": 45571,
+   "name": "2025 Bat City Cup",
+   "start": "2025-12-05",
+   "end": "2025-12-07"
+  },
+  {
+   "id": 46278,
+   "name": "Western Conference - Tier 2",
+   "start": "2025-09-06",
+   "end": "2026-04-27"
+  },
+  {
+   "id": 49565,
+   "name": "Target USA CUP Qualifier Texas",
+   "start": "2026-02-06",
+   "end": "2026-02-09"
+  },
+  {
+   "id": 52629,
+   "name": "Force Spring Blowout 2026",
+   "start": "2026-05-15",
+   "end": "2026-05-17"
+  }
+ ],
+ "flights": {
+  "45339": [
+   474600
+  ],
+  "45571": [
+   398835
+  ],
+  "46278": [
+   412365
+  ],
+  "49565": [
+   439389
+  ],
+  "52629": [
+   479466
+  ]
+ }
+}

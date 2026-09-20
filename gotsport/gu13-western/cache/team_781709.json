@@ -1,0 +1,18 @@
+{
+ "team_id": 781709,
+ "team_name": "Lady Arsenal 13/14 Red",
+ "pulled": "2026-09-20",
+ "events": [
+  {
+   "id": 55842,
+   "name": "11th Annual ADIDAS Fall Kickoff",
+   "start": "2026-08-22",
+   "end": "2026-08-23"
+  }
+ ],
+ "flights": {
+  "55842": [
+   512758
+  ]
+ }
+}

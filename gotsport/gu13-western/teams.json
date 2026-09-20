@@ -1,0 +1,21 @@
+{
+ "_note": "AthleteOne league teamID -> GotSport team_id(s) for GU13 Western (flight 41141). Found 2026-09-20 by paging the rankings API name search (girls, U13 + U14, USA) — every result was checked, not just page 1. 'gotsport' ids are used; 'candidates' are NOT used until someone confirms them, because a wrong id would credit another team's games.",
+ "132585": {"name": "Boerne SC Red", "gotsport": [498029]},
+ "133254": {"name": "LTFC", "gotsport": [501369]},
+ "131145": {"name": "Lions FC RED", "gotsport": [510347]},
+ "132660": {"name": "Pflugerville FC Green", "gotsport": [154486]},
+ "132496": {"name": "TC Premier SC", "gotsport": [388581]},
+
+ "131207": {"name": "FC Westlake", "gotsport": [], "candidates": [510796, 525538, 363345],
+            "_why": "those three are also candidates for the GU14 flight's FC Westlake team; no 2013/14 STXCL entry exists"},
+ "131223": {"name": "FC Westlake Central", "gotsport": [], "candidates": [742418],
+            "_why": "742418 is 'FC Westlake N1 G2013/14 Central (TX)' — right club and label, but registered under N1, not ECNL RL"},
+ "131225": {"name": "FC Westlake North", "gotsport": [], "candidates": [742419],
+            "_why": "same as Central: N1 entry, name matches"},
+ "132820": {"name": "Lonestar ATX Red", "gotsport": [], "candidates": [488175]},
+ "133622": {"name": "Lonestar ATX White", "gotsport": [], "candidates": [758571]},
+ "132746": {"name": "Lonestar ATX NTH Gold", "gotsport": [], "candidates": [664642]},
+ "132760": {"name": "Lonestar ATX STH Gold", "gotsport": [], "candidates": [652833]},
+ "109640": {"name": "Lonestar SAT I", "gotsport": [], "candidates": [161152, 161151]},
+ "132070": {"name": "Lonestar SAT II", "gotsport": [], "candidates": [161153]}
+}

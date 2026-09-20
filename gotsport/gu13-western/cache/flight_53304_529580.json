@@ -1,0 +1,93 @@
+[
+ {
+  "id": 26988214,
+  "date": "2026-08-21",
+  "event_id": 53304,
+  "event": "COPPELL CUP 26",
+  "division": "U13G 11v11 SIlver Elite 13/14G",
+  "home_id": 113057,
+  "home_name": "Solar SC N1 G2013/14 Campos (TX)- 57",
+  "away_id": 369838,
+  "away_name": "NTX Celtic FC North G2013/14 McCallum- 79-c",
+  "hs": 5,
+  "as": 2
+ },
+ {
+  "id": 26988213,
+  "date": "2026-08-21",
+  "event_id": 53304,
+  "event": "COPPELL CUP 26",
+  "division": "U13G 11v11 SIlver Elite 13/14G",
+  "home_id": 254634,
+  "home_name": "NTX Celtic FC South G2013/14 Bravo- 45",
+  "away_id": 625830,
+  "away_name": "N1 G2013/2014 White (TX)- 81-c",
+  "hs": 2,
+  "as": 0
+ },
+ {
+  "id": 26988215,
+  "date": "2026-08-22",
+  "event_id": 53304,
+  "event": "COPPELL CUP 26",
+  "division": "U13G 11v11 SIlver Elite 13/14G",
+  "home_id": 625830,
+  "home_name": "N1 G2013/2014 White (TX)- 81-c",
+  "away_id": 113057,
+  "away_name": "Solar SC N1 G2013/14 Campos (TX)- 57",
+  "hs": 1,
+  "as": 1
+ },
+ {
+  "id": 26988218,
+  "date": "2026-08-23",
+  "event_id": 53304,
+  "event": "COPPELL CUP 26",
+  "division": "U13G 11v11 SIlver Elite 13/14G",
+  "home_id": 369838,
+  "home_name": "NTX Celtic FC North G2013/14 McCallum- 79-c",
+  "away_id": 625830,
+  "away_name": "N1 G2013/2014 White (TX)- 81-c",
+  "hs": 2,
+  "as": 1
+ },
+ {
+  "id": 26988217,
+  "date": "2026-08-23",
+  "event_id": 53304,
+  "event": "COPPELL CUP 26",
+  "division": "U13G 11v11 SIlver Elite 13/14G",
+  "home_id": 254634,
+  "home_name": "NTX Celtic FC South G2013/14 Bravo- 45",
+  "away_id": 113057,
+  "away_name": "Solar SC N1 G2013/14 Campos (TX)- 57",
+  "hs": 0,
+  "as": 4
+ },
+ {
+  "id": 26988216,
+  "date": "2026-08-22",
+  "event_id": 53304,
+  "event": "COPPELL CUP 26",
+  "division": "U13G 11v11 SIlver Elite 13/14G",
+  "home_id": 369838,
+  "home_name": "NTX Celtic FC North G2013/14 McCallum- 79-c",
+  "away_id": 254634,
+  "away_name": "NTX Celtic FC South G2013/14 Bravo- 45",
+  "hs": 1,
+  "as": 0
+ },
+ {
+  "id": 26988219,
+  "date": "2026-08-23",
+  "event_id": 53304,
+  "event": "COPPELL CUP 26",
+  "division": "U13G 11v11 SIlver Elite 13/14G",
+  "home_id": 113057,
+  "home_name": "Solar SC N1 G2013/14 Campos (TX)- 57",
+  "away_id": 369838,
+  "away_name": "NTX Celtic FC North G2013/14 McCallum- 79-c",
+  "hs": 2,
+  "as": 3
+ }
+]
