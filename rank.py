@@ -20,6 +20,7 @@ import argparse
 import collections
 import json
 import math
+import re
 import urllib.request
 
 import numpy as np
@@ -54,12 +55,14 @@ def get(url):
         return json.loads(r.read().decode())
 
 
+SUFFIX_RE = re.compile(r"\s*\bECNL\s+RL\s+STXCL\b\s*|\s*\bG\d{4}(?:/\d{2,4})?\b\s*")
+
+
 def shorten(name):
-    """Strip the repeated division suffix so output is readable."""
-    out = name
-    for junk in (" ECNL RL STXCL G2012/13", " ECNL RL STXCL"):
-        out = out.replace(junk, "")
-    return out.replace("Soccer Club - ", "").strip()
+    """Strip the repeated league/age suffix ("ECNL RL STXCL", "G2012/13") so output is readable.
+    Works for any age group: 'AHFC CENTRAL ECNL RL STXCL G2012/13 I' -> 'AHFC CENTRAL I'."""
+    out = SUFFIX_RE.sub(" ", name).replace("Soccer Club - ", "")
+    return re.sub(r"\s{2,}", " ", out).strip()
 
 
 def fetch(event_id, flight_id):

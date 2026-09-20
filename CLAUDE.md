@@ -267,3 +267,13 @@ exact score, and 3-way Brier score (pure guessing = 0.67; lower is better), spli
 matchups vs guesses. The first 16 games (Sep 12–13) predate tracking and aren't graded.
 `--simulate-until` grades against saved estimates but never writes them. Don't commit a
 predictions.json produced during a simulation.
+
+## 13. Multiple leagues (added 2026-09-20)
+
+`leagues.json` drives everything: `[{slug, name, event, flight}]`. Slug `""` is the site root
+(GU14 Regional, so its URL and its `history/*.json` stay put); every other slug builds to
+`site/<slug>/` with data under `history/<slug>/` and `gotsport/<slug>/`. `build_site.use_league()`
+and `gotsport.use_league()` repoint the module-level paths — call one of them before anything that
+touches league data. `build_site.py` loops all leagues (`--slug` builds one); `gotsport.py` loops
+too and skips leagues with no `teams.json`. `add_league.py` looks up a flight, prints its teams,
+and appends it. The page header renders a toggle between leagues.

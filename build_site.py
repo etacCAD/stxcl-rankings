@@ -24,11 +24,38 @@ from zoneinfo import ZoneInfo
 import gotsport
 import rank
 
-EVENT_ID = 4260
-FLIGHT_ID = 41143
 ROOT = pathlib.Path(__file__).resolve().parent
+LEAGUES = json.loads((ROOT / "leagues.json").read_text())
+
+# Set per league by use_league(). The first league keeps the original paths and URL,
+# so the GU14 page and its saved history stay where they were.
+EVENT_ID, FLIGHT_ID, SLUG, LEAGUE = 4260, 41143, "", {}
+HIST = ROOT / "history"
 TZ = ZoneInfo("America/Chicago")
-PUBLIC_URL = f"https://app.athleteone.com/public/event/{EVENT_ID}/schedules-standings/schedules/{FLIGHT_ID}"
+PUBLIC_URL = ""
+
+
+def use_league(cfg):
+    """Point this module (and gotsport) at one league: ids, output slug, own data folders."""
+    global EVENT_ID, FLIGHT_ID, SLUG, LEAGUE, HIST, PRED_FILE, PUBLIC_URL
+    LEAGUE = cfg
+    EVENT_ID, FLIGHT_ID, SLUG = cfg["event"], cfg["flight"], cfg.get("slug", "")
+    HIST = (ROOT / "history" / SLUG) if SLUG else (ROOT / "history")
+    PRED_FILE = HIST / "predictions.json"
+    PUBLIC_URL = f"https://app.athleteone.com/public/event/{EVENT_ID}/schedules-standings/standings/{FLIGHT_ID}"
+    gotsport.use_league(SLUG)
+
+
+def render_nav():
+    if len(LEAGUES) < 2:
+        return ""
+    links = []
+    for cfg in LEAGUES:
+        slug = cfg.get("slug", "")
+        href = ("../" if SLUG else "") + (slug + "/" if slug else "")
+        cur = ' class="cur"' if slug == SLUG else ""
+        links.append(f'<a href="{e(href or "./")}"{cur}>{e(cfg["name"])}</a>')
+    return '<nav class="leagues">' + "".join(links) + "</nav>"
 
 e = html.escape
 
@@ -130,7 +157,7 @@ def analyse(meta, sched, standings, event, simulate_until=None, gs_games=()):
     # movement vs previous matchday snapshot
     last_date = played[-1]["date"] if played else None
     prev = None
-    hist = ROOT / "history"
+    hist = HIST
     if last_date and hist.exists() and not simulate_until:
         older = sorted(p for p in hist.glob("20*.json") if p.stem < last_date)
         if older:
@@ -145,7 +172,9 @@ def analyse(meta, sched, standings, event, simulate_until=None, gs_games=()):
         intra = sum(1 for g in played if teams[g["home"]]["club"] == teams[g["away"]]["club"] == club)
         big_clubs.append({"club": club, "teams": n, "intra": intra})
 
-    next_date = upcoming[0]["date"] if upcoming else None
+    today = dt.datetime.now(TZ).date().isoformat()
+    ahead = [g for g in upcoming if g["date"] >= today]
+    next_date = ahead[0]["date"] if ahead else None
     gpg = sum(g["hs"] + g["as"] for g in played) / (2 * len(played)) if played else 1.5
     return {
         "meta": meta, "event": event, "teams": teams, "rec": rec, "knobs": k,
@@ -163,7 +192,7 @@ def analyse(meta, sched, standings, event, simulate_until=None, gs_games=()):
     }
 
 
-PRED_FILE = ROOT / "history" / "predictions.json"
+PRED_FILE = HIST / "predictions.json"  # replaced per league by use_league()
 
 
 def load_predictions():
@@ -279,6 +308,7 @@ details .body td.l.muted{white-space:nowrap}
 .fx .meta{grid-column:1/-1;text-align:center;font-size:12px;color:var(--muted);margin-top:-4px}
 .win{font-weight:700}
 ul.flags{margin:0;padding-left:18px}ul.flags li{margin:6px 0}
+.orank{font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
 .chip.ok{background:var(--okbg);border-color:var(--okline);color:var(--ink)}
 .chip.miss{color:var(--loss)}
 .fx.pred{padding:10px 0;row-gap:4px}
@@ -289,6 +319,9 @@ ul.flags{margin:0;padding-left:18px}ul.flags li{margin:6px 0}
 .probs span{display:block;height:100%}
 .probs .ph{background:var(--accent)}.probs .pd{background:var(--line)}.probs .pa{background:var(--away)}
 .fx.pred .meta{margin-top:2px}
+nav.leagues{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+nav.leagues a{font-size:13px;color:var(--muted);text-decoration:none;border:1px solid var(--line);background:var(--card);padding:3px 11px;border-radius:99px}
+nav.leagues a.cur{color:var(--ink);border-color:var(--muted);font-weight:600}
 ol.est{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 ol.est li{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .est-rank{font-size:22px;font-weight:800;min-width:30px;line-height:1.2;font-variant-numeric:tabular-nums}
@@ -500,7 +533,7 @@ def render_estimated(a):
     note = ("" if a["connected"] else
             " Right now the pods haven't played each other, so the order between teams from different pods is an educated guess.")
     return ('<h2>Estimated power ranking</h2>'
-            '<p class="sub small">A forced 1–16 order from every result so far. Each line says why a team sits above the next one. '
+            f'<p class="sub small">A forced 1–{len(a["teams"])} order from every result so far. Each line says why a team sits above the next one. '
             '<b>Coin flip</b> means too close to call; exact ties are listed alphabetically.' + note + '</p>'
             f'<ol class="est">{"".join(items)}</ol>')
 
@@ -628,8 +661,12 @@ def render_grades(a):
 def render_fixtures(a):
     out = []
     if a["upcoming"]:
+        today = dt.datetime.now(TZ).date().isoformat()
+        stale = [g for g in a["upcoming"] if g["date"] < today]  # date has passed, no score posted
         weekends = {}
         for g in a["upcoming"]:
+            if g["date"] < today:
+                continue
             d = dt.date.fromisoformat(g["date"])
             weekends.setdefault(d - dt.timedelta(days=d.weekday()), []).append(g)  # Mon–Sun week, so Fri joins its Sat/Sun
         out.append('<h2>Upcoming games · score estimates</h2>'
@@ -647,6 +684,13 @@ def render_fixtures(a):
                     "so every estimate here is a guess.</p>") if none_linked else ""
             out.append(f'<details{op}><summary><span>{label}</span><span class="muted small">{len(games)} games</span></summary>'
                        f'<div class="body">{note}{"".join(prediction(a, g, label_guess=not none_linked) for g in games)}</div></details>')
+        if stale:
+            body = "".join(prediction(a, g) for g in stale)
+            out.append(f'<details><summary><span>Postponed or not yet posted</span>'
+                       f'<span class="muted small">{len(stale)} games</span></summary>'
+                       '<div class="body"><p class="muted small" style="margin:0 0 4px">These dates have passed with no '
+                       'score posted — usually postponed, sometimes just a late entry.</p>'
+                       f'{body}</div></details>')
     out.append(render_grades(a))
     if a["played"]:
         out.append("<h2>Results</h2>")
@@ -660,25 +704,41 @@ def render_fixtures(a):
     return "".join(out)
 
 
+def opp_rank(a, t):
+    """Current standing of a team in the estimated ranking: '#3', or 'T5' when shared."""
+    r = dict((u, rr) for rr, u in a["overall"]).get(t)
+    if r is None:
+        return ""
+    return ("T" if sum(1 for rr, _ in a["overall"] if rr == r) > 1 else "#") + str(r)
+
+
 def render_teams(a):
     name = lambda t: a["teams"][t]["name"]
     out = ['<h2>Teams</h2>']
     for t in sorted(a["teams"], key=name):
         x = a["rec"][t]
         rows = []
+        pct = lambda v: f"{v * 100:.0f}%"
         for g in a["played"] + a["upcoming"]:
             if t not in (g["home"], g["away"]):
                 continue
             home = g["home"] == t
             opp = g["away"] if home else g["home"]
-            vs = ("v " if home else "@ ") + e(name(opp))
+            vs = ("v " if home else "@ ") + f'<span class="orank">{opp_rank(a, opp)}</span> ' + e(name(opp))
             if g in a["played"]:
                 gf, ga = (g["hs"], g["as"]) if home else (g["as"], g["hs"])
                 res = "W" if gf > ga else "D" if gf == ga else "L"
                 right = f'<span class="{res}">{res}</span> {gf}–{ga}'
+                sub = ""
             else:
-                right = f'<span class="muted">{e(g["time"])}</span>'
-            rows.append(f'<tr><td class="l muted">{nice_date(g["date"])}</td><td class="l">{vs}</td><td>{right}</td></tr>')
+                p = rank.predict(a["rec"], g["home"], g["away"], a["gpg"])
+                gf, ga = p["score"] if home else p["score"][::-1]
+                win, loss = (p["home"], p["away"]) if home else (p["away"], p["home"])
+                right = f'<span class="res est">{gf}–{ga}</span>'
+                sub = (f'<br><span class="muted small">{e(g["time"])} · est · win {pct(win)} · '
+                       f'draw {pct(p["draw"])} · loss {pct(loss)}</span>')
+            rows.append(f'<tr><td class="l muted">{nice_date(g["date"])}</td>'
+                        f'<td class="l">{vs}{sub}</td><td>{right}</td></tr>')
         mine = [g for g in a["gs_games"] if t in (g["home"], g["away"])]
         if mine:
             rows.append('<tr class="tier"><td colspan="3">Tournaments since Aug 1 · GotSport</td></tr>')
@@ -692,13 +752,14 @@ def render_teams(a):
                         f'<td class="l">v {e(opp)}<br><span class="muted small">{e(g["event"])} · {tag}</span></td>'
                         f'<td><span class="{res}">{res}</span> {gf}–{ga}</td></tr>')
         if t in a["gs_mapping"] and not a["gs_mapping"][t]["gotsport"]:
-            rows.append('<tr><td class="l muted small" colspan="3">Not matched to a GotSport team yet, so tournament games aren\'t shown.</td></tr>')
+            rows.append('<tr><td class="l small" colspan="3"><span class="muted">Not matched to a GotSport team yet, so tournament games aren\'t shown.</span></td></tr>')
         pod = f' · Pod {a["pod_of"][t]}' if a["pod_of"] and not a["connected"] else ""
         if mine:
             pod += f" · {len(mine)} tournament"
         out.append(f'<details><summary><span class="tm">{team_cell(a, t)}</span>'
-                   f'<span class="muted small">{x["w"]}-{x["l"]}-{x["d"]} · {x["pts"]} pts{pod}</span></summary>'
-                   f'<div class="body scroll"><p class="muted small" style="margin:0 0 6px">{e(a["teams"][t]["club"])}</p>'
+                   f'<span class="muted small">{opp_rank(a, t)} · {x["w"]}-{x["l"]}-{x["d"]} · {x["pts"]} pts{pod}</span></summary>'
+                   f'<div class="body scroll"><p class="muted small" style="margin:0 0 6px">{e(a["teams"][t]["club"])} · '
+                   "ranks are current; upcoming games show the estimated score and this team's chances</p>"
                    f'<table><tbody>{"".join(rows)}</tbody></table></div></details>')
     return "".join(out)
 
@@ -711,13 +772,17 @@ def render_method(a):
     unmatched = [m["name"] for m in a["gs_mapping"].values() if not m["gotsport"]]
     checked = (dt.datetime.fromisoformat(st["last_success"]).astimezone(TZ).strftime("%b %-d")
                if st.get("last_success") else "never")
-    gs_txt = (f"<li><b>Tournaments:</b> {len(gsg)} games since Aug 1 found on GotSport for {len(gteams)} league teams. "
-              "A tournament game counts, at half weight, only when it helps compare league teams "
-              f"(they met, share an opponent, or their opponents played each other; no longer chains); so far {len(a['gs_counted'])} do. The rest are listed on team pages. "
-              f"Last checked {checked}."
-              + (" ⚠️ GotSport blocked the latest check, so this uses saved data." if st.get("blocked") else "")
-              + (f" Not yet matched on GotSport: {e(', '.join(unmatched))}." if unmatched else "")
-              + " Tournaments run on other platforms aren't included.</li>")
+    if not a["gs_mapping"]:
+        gs_txt = ("<li><b>Tournaments:</b> not tracked for this league yet, so the ranking uses league games only. "
+                  f"They can be added by mapping these teams to GotSport in <code>gotsport/{e(SLUG)}/teams.json</code>.</li>")
+    else:
+        gs_txt = (f"<li><b>Tournaments:</b> {len(gsg)} games since Aug 1 found on GotSport for {len(gteams)} league teams. "
+                      "A tournament game counts, at half weight, only when it helps compare league teams "
+                      f"(they met, share an opponent, or their opponents played each other; no longer chains); so far {len(a['gs_counted'])} do. The rest are listed on team pages. "
+                      f"Last checked {checked}."
+                      + (" ⚠️ GotSport blocked the latest check, so this uses saved data." if st.get("blocked") else "")
+                      + (f" Not yet matched on GotSport: {e(', '.join(unmatched))}." if unmatched else "")
+                      + " Tournaments run on other platforms aren't included.</li>")
     cc = a["cross_check"]
     cc_txt = ("Official standings unavailable for cross-check." if cc is None else
               "Computed points match the official AthleteOne standings." if not cc else
@@ -763,6 +828,7 @@ def render(a):
 <style>{CSS}</style></head>
 <body><div class="wrap">
 {sim}
+{render_nav()}
 <header>
 <div class="eyebrow">{logo}{e(ev.get('name', 'ECNL RL Girls STXCL'))}</div>
 <h1>{e(title)}</h1>
@@ -782,22 +848,16 @@ Unofficial ranking; not affiliated with ECNL.</footer>
 </div></body></html>"""
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default=str(ROOT / "site"))
-    ap.add_argument("--simulate-until")
-    args = ap.parse_args()
-
+def build_one(out, simulate_until):
     meta, sched, standings, event = rank.fetch(EVENT_ID, FLIGHT_ID)
-    a = analyse(meta, sched, standings, event, args.simulate_until, gotsport.load_games())
+    a = analyse(meta, sched, standings, event, simulate_until, gotsport.load_games())
     store = load_predictions()
-    if not args.simulate_until:  # simulations grade against saved estimates but never save new ones
+    if not simulate_until:  # simulations grade against saved estimates but never save new ones
         store = update_predictions(a, store)
-        PRED_FILE.parent.mkdir(exist_ok=True)
+        PRED_FILE.parent.mkdir(parents=True, exist_ok=True)
         PRED_FILE.write_text(json.dumps(store, indent=1, sort_keys=True))
     a["graded"] = grade(a, store)
 
-    out = pathlib.Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(render(a))
     (out / "data.json").write_text(json.dumps({
@@ -809,16 +869,29 @@ def main():
         "cross_check_mismatch":[a["teams"][t]["name"] for t in (a["cross_check"] or [])],
     }, indent=1))
 
-    if a["last_date"] and not args.simulate_until:
-        hist = ROOT / "history"
-        hist.mkdir(exist_ok=True)
+    if a["last_date"] and not simulate_until:
+        HIST.mkdir(parents=True, exist_ok=True)
         snap = json.dumps(snapshot(a), indent=1, sort_keys=True)
-        path = hist / f"{a['last_date']}.json"
+        path = HIST / f"{a['last_date']}.json"
         if not path.exists() or path.read_text() != snap:
             path.write_text(snap)
 
-    print(f"played {len(a['played'])}/{a['scheduled']}  components {a['components']}  "
+    print(f"{LEAGUE.get('name', '?')}: played {len(a['played'])}/{a['scheduled']}  "
+          f"components {a['components']}  "
           f"cross-check {'MATCH' if not a['cross_check'] else a['cross_check']}  -> {out / 'index.html'}")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=str(ROOT / "site"))
+    ap.add_argument("--simulate-until")
+    ap.add_argument("--slug", help='build only this league ("" for the root one)')
+    args = ap.parse_args()
+    for cfg in LEAGUES:
+        if args.slug is not None and cfg.get("slug", "") != args.slug:
+            continue
+        use_league(cfg)
+        build_one(pathlib.Path(args.out) / cfg.get("slug", ""), args.simulate_until)
 
 
 if __name__ == "__main__":

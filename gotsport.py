@@ -34,9 +34,18 @@ MAX_CHAIN = 3      # count a tournament game only if it sits on a chain of <= th
                    # 3 = their opponents played each other)
 OUTSIDE_FRESH_DAYS = 6  # re-pull an outside opponent's events at most this often
 
-DIR = pathlib.Path(__file__).resolve().parent / "gotsport"
+BASE = pathlib.Path(__file__).resolve().parent / "gotsport"
+DIR = BASE
 CACHE = DIR / "cache"
 STATUS = DIR / "status.json"
+
+
+def use_league(slug=""):
+    """Each league keeps its own team mapping, cache and status under gotsport/<slug>/."""
+    global DIR, CACHE, STATUS
+    DIR = (BASE / slug) if slug else BASE
+    CACHE = DIR / "cache"
+    STATUS = DIR / "status.json"
 HEADERS = {
     "User-Agent": rank.UA,
     "Accept": "application/json",
@@ -70,7 +79,10 @@ def _date(long_text):
 
 
 def load_mapping():
-    raw = json.loads((DIR / "teams.json").read_text())
+    try:
+        raw = json.loads((DIR / "teams.json").read_text())
+    except (OSError, ValueError):
+        return {}  # league with no GotSport mapping yet: no tournament games, site still builds
     return {int(k): v for k, v in raw.items() if not k.startswith("_")}
 
 
@@ -225,13 +237,20 @@ def split_counted(games, league_ids, max_chain=MAX_CHAIN):
 
 
 def main():
-    status, fetched = refresh()
-    games = load_games()
-    league = set(load_mapping())
-    counted, _ = split_counted(games, league)
-    teams = {g[s] for g in games for s in ("home", "away") if g[s] in league}
-    print(f"gotsport: {fetched} requests  blocked={status.get('blocked')}  error={status.get('error')}")
-    print(f"  {len(games)} tournament games since {SINCE}, {len(teams)} league teams, {len(counted)} counted")
+    leagues = json.loads((BASE.parent / "leagues.json").read_text())
+    for cfg in leagues:
+        use_league(cfg.get("slug", ""))
+        name = cfg.get("name", "?")
+        if not load_mapping():
+            print(f"gotsport: {name}: no team mapping yet (gotsport/{cfg.get('slug', '')}/teams.json) — skipped")
+            continue
+        status, fetched = refresh()
+        games = load_games()
+        league = set(load_mapping())
+        counted, _ = split_counted(games, league)
+        teams = {g[s] for g in games for s in ("home", "away") if g[s] in league}
+        print(f"gotsport: {name}: {fetched} requests  blocked={status.get('blocked')}  error={status.get('error')}")
+        print(f"  {len(games)} tournament games since {SINCE}, {len(teams)} league teams, {len(counted)} counted")
     return 0
 
 
