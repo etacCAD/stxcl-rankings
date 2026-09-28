@@ -1,0 +1,18 @@
+{
+ "team_id": 791080,
+ "team_name": "SG1 ECNL RL STXCL G2012/13",
+ "pulled": "2026-09-28",
+ "events": [
+  {
+   "id": 51247,
+   "name": "Texas Labor Day Cup 2026",
+   "start": "2026-09-05",
+   "end": "2026-09-07"
+  }
+ ],
+ "flights": {
+  "51247": [
+   462074
+  ]
+ }
+}

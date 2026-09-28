@@ -1,6 +1,6 @@
 {
- "team_id": 632751,
- "team_name": "Challenge ECNL RL STXCL G13",
+ "team_id": 334105,
+ "team_name": "Coastal Premier N1 G2012/13 TX-S",
  "pulled": "2026-09-28",
  "events": [
   {
@@ -10,18 +10,18 @@
    "end": "2026-06-07"
   },
   {
-   "id": 50739,
-   "name": "2026 Reliant Energy Power Cup",
-   "start": "2026-01-30",
-   "end": "2026-02-01"
+   "id": 51247,
+   "name": "Texas Labor Day Cup 2026",
+   "start": "2026-09-05",
+   "end": "2026-09-07"
   }
  ],
  "flights": {
   "50707": [
    477769
   ],
-  "50739": [
-   454686
+  "51247": [
+   462074
   ]
  }
 }

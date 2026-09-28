@@ -1,0 +1,93 @@
+[
+ {
+  "id": 27570373,
+  "date": "2026-09-06",
+  "event_id": 51247,
+  "event": "Texas Labor Day Cup 2026",
+  "division": "U14G U14G BRAZIL",
+  "home_id": 575304,
+  "home_name": "U14G DPL",
+  "away_id": 334105,
+  "away_name": "Coastal Premier N1 G2012/13 TX-S",
+  "hs": 0,
+  "as": 1
+ },
+ {
+  "id": 27570372,
+  "date": "2026-09-06",
+  "event_id": 51247,
+  "event": "Texas Labor Day Cup 2026",
+  "division": "U14G U14G BRAZIL",
+  "home_id": 96925,
+  "home_name": "AHFC N1 G2012/13 PREMIER C TX",
+  "away_id": 575304,
+  "away_name": "U14G DPL",
+  "hs": 0,
+  "as": 2
+ },
+ {
+  "id": 27570374,
+  "date": "2026-09-06",
+  "event_id": 51247,
+  "event": "Texas Labor Day Cup 2026",
+  "division": "U14G U14G BRAZIL",
+  "home_id": 96925,
+  "home_name": "AHFC N1 G2012/13 PREMIER C TX",
+  "away_id": 791080,
+  "away_name": "SG1 ECNL RL STXCL G2012/13",
+  "hs": 1,
+  "as": 2
+ },
+ {
+  "id": 27570370,
+  "date": "2026-09-05",
+  "event_id": 51247,
+  "event": "Texas Labor Day Cup 2026",
+  "division": "U14G U14G BRAZIL",
+  "home_id": 334105,
+  "home_name": "Coastal Premier N1 G2012/13 TX-S",
+  "away_id": 96925,
+  "away_name": "AHFC N1 G2012/13 PREMIER C TX",
+  "hs": 2,
+  "as": 0
+ },
+ {
+  "id": 27570371,
+  "date": "2026-09-06",
+  "event_id": 51247,
+  "event": "Texas Labor Day Cup 2026",
+  "division": "U14G U14G BRAZIL",
+  "home_id": 791080,
+  "home_name": "SG1 ECNL RL STXCL G2012/13",
+  "away_id": 334105,
+  "away_name": "Coastal Premier N1 G2012/13 TX-S",
+  "hs": 1,
+  "as": 1
+ },
+ {
+  "id": 27570369,
+  "date": "2026-09-05",
+  "event_id": 51247,
+  "event": "Texas Labor Day Cup 2026",
+  "division": "U14G U14G BRAZIL",
+  "home_id": 791080,
+  "home_name": "SG1 ECNL RL STXCL G2012/13",
+  "away_id": 575304,
+  "away_name": "U14G DPL",
+  "hs": 0,
+  "as": 4
+ },
+ {
+  "id": 27570612,
+  "date": "2026-09-07",
+  "event_id": 51247,
+  "event": "Texas Labor Day Cup 2026",
+  "division": "U14G U14G BRAZIL",
+  "home_id": 334105,
+  "home_name": "Coastal Premier N1 G2012/13 TX-S",
+  "away_id": 575304,
+  "away_name": "U14G DPL",
+  "hs": null,
+  "as": null
+ }
+]
