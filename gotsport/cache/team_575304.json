@@ -1,7 +1,7 @@
 {
  "team_id": 575304,
  "team_name": "U14G DPL",
- "pulled": "2026-09-28",
+ "pulled": "2026-10-12",
  "events": [
   {
    "id": 48743,
@@ -20,6 +20,12 @@
    "name": "Houston Pre-Labor Day Cup 2026",
    "start": "2026-08-29",
    "end": "2026-08-31"
+  },
+  {
+   "id": 57893,
+   "name": "2026 DPL Western Regional, U13/U14 - Provo, Utah",
+   "start": "2026-10-01",
+   "end": "2026-10-05"
   }
  ],
  "flights": {
@@ -31,6 +37,9 @@
   ],
   "55202": [
    538696
+  ],
+  "57893": [
+   531279
   ]
  }
 }

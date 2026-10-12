@@ -1,7 +1,7 @@
 {
  "team_id": 523464,
  "team_name": "Capital City SC U14G DPL",
- "pulled": "2026-09-28",
+ "pulled": "2026-10-12",
  "events": [
   {
    "id": 41948,
@@ -20,6 +20,12 @@
    "name": "11th Annual ADIDAS Fall Kickoff",
    "start": "2026-08-22",
    "end": "2026-08-23"
+  },
+  {
+   "id": 57893,
+   "name": "2026 DPL Western Regional, U13/U14 - Provo, Utah",
+   "start": "2026-10-01",
+   "end": "2026-10-05"
   }
  ],
  "flights": {
@@ -31,6 +37,9 @@
   ],
   "55842": [
    512764
+  ],
+  "57893": [
+   531278
   ]
  }
 }

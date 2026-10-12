@@ -1,7 +1,7 @@
 {
  "team_id": 401266,
  "team_name": "BVFC Champions 2013G",
- "pulled": "2026-09-28",
+ "pulled": "2026-10-12",
  "events": [
   {
    "id": 45379,
@@ -40,6 +40,12 @@
    "end": "2026-06-15"
   },
   {
+   "id": 54737,
+   "name": "Fall 2026 Eastern District Players League",
+   "start": "2026-09-01",
+   "end": "2026-11-16"
+  },
+  {
    "id": 55539,
    "name": "2026 Houston Warm-Up Cup",
    "start": "2026-08-21",
@@ -65,6 +71,9 @@
   ],
   "52704": [
    480269
+  ],
+  "54737": [
+   501160
   ],
   "55539": [
    509544
