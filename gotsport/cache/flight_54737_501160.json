@@ -39,6 +39,19 @@
   "as": 0
  },
  {
+  "id": 26613411,
+  "date": "2026-10-17",
+  "event_id": 54737,
+  "event": "Fall 2026 Eastern District Players League",
+  "division": "U14G U14 (2012-13) Girls Qualifying",
+  "home_id": 512277,
+  "home_name": "14U Villarreal Girls Houston Academy",
+  "away_id": 736398,
+  "away_name": "U14 G Black",
+  "hs": 4,
+  "as": 1
+ },
+ {
   "id": 26613401,
   "date": "2026-09-13",
   "event_id": 54737,
@@ -52,6 +65,45 @@
   "as": 2
  },
  {
+  "id": 26613410,
+  "date": "2026-10-17",
+  "event_id": 54737,
+  "event": "Fall 2026 Eastern District Players League",
+  "division": "U14G U14 (2012-13) Girls Qualifying",
+  "home_id": 401266,
+  "home_name": "BVFC Champions 2013G",
+  "away_id": 619052,
+  "away_name": "ID Rayadas Houston FC G2012/13 Platinum",
+  "hs": 1,
+  "as": 0
+ },
+ {
+  "id": 26613413,
+  "date": "2026-10-17",
+  "event_id": 54737,
+  "event": "Fall 2026 Eastern District Players League",
+  "division": "U14G U14 (2012-13) Girls Qualifying",
+  "home_id": 508714,
+  "home_name": "BYSA Venom",
+  "away_id": 652857,
+  "away_name": "Houston Futsal SC U14G EDPL",
+  "hs": 2,
+  "as": 3
+ },
+ {
+  "id": 26613414,
+  "date": "2026-10-18",
+  "event_id": 54737,
+  "event": "Fall 2026 Eastern District Players League",
+  "division": "U14G U14 (2012-13) Girls Qualifying",
+  "home_id": 508714,
+  "home_name": "BYSA Venom",
+  "away_id": 522110,
+  "away_name": "PSC G12/13 Elite EDPL",
+  "hs": 4,
+  "as": 1
+ },
+ {
   "id": 26613390,
   "date": "2026-09-12",
   "event_id": 54737,
@@ -63,6 +115,19 @@
   "away_name": "U14 G Black",
   "hs": 2,
   "as": 0
+ },
+ {
+  "id": 26613406,
+  "date": "2026-10-18",
+  "event_id": 54737,
+  "event": "Fall 2026 Eastern District Players League",
+  "division": "U14G U14 (2012-13) Girls Qualifying",
+  "home_id": 619052,
+  "home_name": "ID Rayadas Houston FC G2012/13 Platinum",
+  "away_id": 512277,
+  "away_name": "14U Villarreal Girls Houston Academy",
+  "hs": 4,
+  "as": 2
  },
  {
   "id": 26613400,
@@ -115,6 +180,19 @@
   "away_name": "ID Rayadas Houston FC G2012/13 Platinum",
   "hs": 0,
   "as": 2
+ },
+ {
+  "id": 26613409,
+  "date": "2026-10-18",
+  "event_id": 54737,
+  "event": "Fall 2026 Eastern District Players League",
+  "division": "U14G U14 (2012-13) Girls Qualifying",
+  "home_id": 652857,
+  "home_name": "Houston Futsal SC U14G EDPL",
+  "away_id": 401266,
+  "away_name": "BVFC Champions 2013G",
+  "hs": 1,
+  "as": 1
  },
  {
   "id": 26613398,
