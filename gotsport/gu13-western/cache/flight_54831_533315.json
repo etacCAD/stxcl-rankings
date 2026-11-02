@@ -39,6 +39,19 @@
   "as": 6
  },
  {
+  "id": 26911518,
+  "date": "2026-11-01",
+  "event_id": 54831,
+  "event": "STXCL Eastern Conference 2026-27",
+  "division": "U13G Girls U13 Bracket A",
+  "home_id": 745825,
+  "home_name": "Challenge East Pre-ECNL STXCL EC GU13",
+  "away_id": 795407,
+  "away_name": "AHFC PRE-ECNL BLUE GU11 STXCL EC GU13",
+  "hs": 2,
+  "as": 1
+ },
+ {
   "id": 26911512,
   "date": "2026-10-18",
   "event_id": 54831,
@@ -63,6 +76,19 @@
   "away_name": "HTX South Gold STXCL EC GU13",
   "hs": 3,
   "as": 1
+ },
+ {
+  "id": 26911519,
+  "date": "2026-10-31",
+  "event_id": 54831,
+  "event": "STXCL Eastern Conference 2026-27",
+  "division": "U13G Girls U13 Bracket A",
+  "home_id": 513076,
+  "home_name": "AHFC CENTRAL PREMIER I GU12 STXCL EC GU13",
+  "away_id": 795353,
+  "away_name": "RISE SC Pre GA STXCL EC GU13",
+  "hs": null,
+  "as": null
  },
  {
   "id": 26911504,
@@ -100,8 +126,8 @@
   "home_name": "RISE SC Pre GA STXCL EC GU13",
   "away_id": 770325,
   "away_name": "HTX Kingwood Gold STXCL EC GU13",
-  "hs": null,
-  "as": null
+  "hs": 2,
+  "as": 0
  },
  {
   "id": 26911506,
@@ -180,6 +206,19 @@
   "away_name": "AHFC PRE-ECNL BLUE GU11 STXCL EC GU13",
   "hs": 0,
   "as": 4
+ },
+ {
+  "id": 26911517,
+  "date": "2026-10-31",
+  "event_id": 54831,
+  "event": "STXCL Eastern Conference 2026-27",
+  "division": "U13G Girls U13 Bracket A",
+  "home_id": 770325,
+  "home_name": "HTX Kingwood Gold STXCL EC GU13",
+  "away_id": 194785,
+  "away_name": "HTX South Gold STXCL EC GU13",
+  "hs": null,
+  "as": null
  },
  {
   "id": 26911505,
