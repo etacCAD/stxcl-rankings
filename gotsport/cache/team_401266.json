@@ -1,14 +1,8 @@
 {
  "team_id": 401266,
  "team_name": "BVFC Champions 2013G",
- "pulled": "2026-11-02",
+ "pulled": "2026-11-09",
  "events": [
-  {
-   "id": 45379,
-   "name": "Fall 2025 Eastern District Players League",
-   "start": "2025-09-01",
-   "end": "2025-11-24"
-  },
   {
    "id": 45571,
    "name": "2025 Bat City Cup",
@@ -53,9 +47,6 @@
   }
  ],
  "flights": {
-  "45379": [
-   396858
-  ],
   "45571": [
    398849
   ],
