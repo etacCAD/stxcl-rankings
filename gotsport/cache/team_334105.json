@@ -1,7 +1,7 @@
 {
  "team_id": 334105,
  "team_name": "Coastal Premier N1 G2012/13 TX-S",
- "pulled": "2026-11-09",
+ "pulled": "2026-11-16",
  "events": [
   {
    "id": 50707,
@@ -14,6 +14,12 @@
    "name": "Texas Labor Day Cup 2026",
    "start": "2026-09-05",
    "end": "2026-09-07"
+  },
+  {
+   "id": 54056,
+   "name": "N1 I South District 3 (STXCL) I 2026-27",
+   "start": "2026-07-01",
+   "end": "2027-05-03"
   }
  ],
  "flights": {
@@ -22,6 +28,9 @@
   ],
   "51247": [
    462074
+  ],
+  "54056": [
+   507843
   ]
  }
 }

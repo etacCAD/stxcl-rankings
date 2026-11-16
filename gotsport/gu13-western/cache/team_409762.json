@@ -1,7 +1,7 @@
 {
  "team_id": 409762,
  "team_name": "Revolution Premier SC N1 G2014/2013Gold (TX)",
- "pulled": "2026-11-09",
+ "pulled": "2026-11-16",
  "events": [
   {
    "id": 41032,
@@ -52,6 +52,12 @@
    "end": "2026-08-17"
   },
   {
+   "id": 54028,
+   "name": "N1 I South District 2 (Texas Club Soccer League) I 2026-27",
+   "start": "2026-08-21",
+   "end": "2027-04-26"
+  },
+  {
    "id": 55450,
    "name": "George Ostrander Plano Labor Day Invitational 2026",
    "start": "2026-09-04",
@@ -82,6 +88,9 @@
   ],
   "51790": [
    525533
+  ],
+  "54028": [
+   533492
   ],
   "55450": [
    539120

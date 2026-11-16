@@ -1,7 +1,7 @@
 {
  "team_id": 367954,
  "team_name": "Solar Byars 14G",
- "pulled": "2026-11-09",
+ "pulled": "2026-11-16",
  "events": [
   {
    "id": 41032,
@@ -26,6 +26,12 @@
    "name": "BOB WISEMAN MEMORIAL 26",
    "start": "2026-08-14",
    "end": "2026-08-17"
+  },
+  {
+   "id": 54028,
+   "name": "N1 I South District 2 (Texas Club Soccer League) I 2026-27",
+   "start": "2026-08-21",
+   "end": "2027-04-26"
   }
  ],
  "flights": {
@@ -40,6 +46,9 @@
   ],
   "51790": [
    525533
+  ],
+  "54028": [
+   494167
   ]
  }
 }

@@ -1,13 +1,19 @@
 {
  "team_id": 363147,
  "team_name": "North U13G DPL",
- "pulled": "2026-11-09",
+ "pulled": "2026-11-16",
  "events": [
   {
    "id": 41948,
    "name": "Development Player League 25/26",
    "start": "2025-08-01",
    "end": "2026-07-31"
+  },
+  {
+   "id": 51974,
+   "name": "Development Player League 26/27",
+   "start": "2026-08-01",
+   "end": "2027-07-31"
   },
   {
    "id": 55130,
@@ -25,6 +31,9 @@
  "flights": {
   "41948": [
    393947
+  ],
+  "51974": [
+   470738
   ],
   "55130": [
    535690

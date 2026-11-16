@@ -1,7 +1,7 @@
 {
  "team_id": 523464,
  "team_name": "Capital City SC U14G DPL",
- "pulled": "2026-11-09",
+ "pulled": "2026-11-16",
  "events": [
   {
    "id": 41948,
@@ -14,6 +14,12 @@
    "name": "2026 DPL Eastern Regional, U13/U14 - Richmond, Virginia",
    "start": "2026-04-23",
    "end": "2026-04-27"
+  },
+  {
+   "id": 51974,
+   "name": "Development Player League 26/27",
+   "start": "2026-08-01",
+   "end": "2027-07-31"
   },
   {
    "id": 55842,
@@ -34,6 +40,9 @@
   ],
   "47258": [
    412537
+  ],
+  "51974": [
+   470750
   ],
   "55842": [
    512764
