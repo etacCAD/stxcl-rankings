@@ -143,19 +143,6 @@
   "as": 1
  },
  {
-  "id": 26775149,
-  "date": "2026-11-15",
-  "event_id": 51974,
-  "event": "Development Player League 26/27",
-  "division": "U14G Lonestar",
-  "home_id": 405448,
-  "home_name": "TXP U14G Navy DPL",
-  "away_id": 237318,
-  "away_name": "North U14G DPL",
-  "hs": null,
-  "as": null
- },
- {
   "id": 26775088,
   "date": "2026-09-12",
   "event_id": 51974,
@@ -607,8 +594,8 @@
   "home_name": "West U14G DPL",
   "away_id": 575304,
   "away_name": "U14G DPL",
-  "hs": null,
-  "as": null
+  "hs": 1,
+  "as": 1
  },
  {
   "id": 26775119,
@@ -750,6 +737,19 @@
   "home_name": "Steel United TX 12/13G DPL",
   "away_id": 788921,
   "away_name": "U14G DPL",
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 26775149,
+  "date": "2026-11-15",
+  "event_id": 51974,
+  "event": "Development Player League 26/27",
+  "division": "U14G Lonestar",
+  "home_id": 405448,
+  "home_name": "TXP U14G Navy DPL",
+  "away_id": 237318,
+  "away_name": "North U14G DPL",
   "hs": null,
   "as": null
  },

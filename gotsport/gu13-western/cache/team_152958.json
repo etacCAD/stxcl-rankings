@@ -1,7 +1,7 @@
 {
  "team_id": 152958,
  "team_name": "Dallas Cosmos SC ECNL RL NTX G2013/14",
- "pulled": "2026-11-16",
+ "pulled": "2026-11-24",
  "events": [
   {
    "id": 41032,
@@ -14,12 +14,6 @@
    "name": "Girls Classic League 2025-26",
    "start": "2025-07-01",
    "end": "2026-05-11"
-  },
-  {
-   "id": 45336,
-   "name": "FALL PREMIER SHOWCASE",
-   "start": "2025-11-14",
-   "end": "2025-11-17"
   },
   {
    "id": 45488,
@@ -70,9 +64,6 @@
   ],
   "44745": [
    391931
-  ],
-  "45336": [
-   446045
   ],
   "45488": [
    398133

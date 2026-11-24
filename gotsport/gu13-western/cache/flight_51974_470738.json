@@ -130,19 +130,6 @@
   "as": 1
  },
  {
-  "id": 26775038,
-  "date": "2026-11-15",
-  "event_id": 51974,
-  "event": "Development Player League 26/27",
-  "division": "U13G Lonestar",
-  "home_id": 652839,
-  "home_name": "TXP U13G Gold DPL",
-  "away_id": 363147,
-  "away_name": "North U13G DPL",
-  "hs": null,
-  "as": null
- },
- {
   "id": 26774977,
   "date": "2026-09-12",
   "event_id": 51974,
@@ -416,6 +403,19 @@
   "as": 8
  },
  {
+  "id": 26775035,
+  "date": "2026-11-15",
+  "event_id": 51974,
+  "event": "Development Player League 26/27",
+  "division": "U13G Lonestar",
+  "home_id": 754967,
+  "home_name": "U13G DPL",
+  "away_id": 788923,
+  "away_name": "U13G DPL",
+  "hs": 3,
+  "as": 1
+ },
+ {
   "id": 26774989,
   "date": "2026-09-20",
   "event_id": 51974,
@@ -427,19 +427,6 @@
   "away_name": "TXP U13G Gold DPL",
   "hs": 0,
   "as": 1
- },
- {
-  "id": 26775035,
-  "date": "2026-11-15",
-  "event_id": 51974,
-  "event": "Development Player League 26/27",
-  "division": "U13G Lonestar",
-  "home_id": 754967,
-  "home_name": "U13G DPL",
-  "away_id": 788923,
-  "away_name": "U13G DPL",
-  "hs": null,
-  "as": null
  },
  {
   "id": 26774975,
@@ -750,6 +737,19 @@
   "home_name": "Dallas Surf U13G DPL",
   "away_id": 754967,
   "away_name": "U13G DPL",
+  "hs": null,
+  "as": null
+ },
+ {
+  "id": 26775038,
+  "date": "2026-11-15",
+  "event_id": 51974,
+  "event": "Development Player League 26/27",
+  "division": "U13G Lonestar",
+  "home_id": 652839,
+  "home_name": "TXP U13G Gold DPL",
+  "away_id": 363147,
+  "away_name": "North U13G DPL",
   "hs": null,
   "as": null
  },

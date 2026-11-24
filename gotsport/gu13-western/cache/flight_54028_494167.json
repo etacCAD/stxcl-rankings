@@ -351,19 +351,6 @@
   "as": 6
  },
  {
-  "id": 26960238,
-  "date": "2026-09-12",
-  "event_id": 54028,
-  "event": "N1 I South District 2 (Texas Club Soccer League) I 2026-27",
-  "division": "U13G GU13 Division 1",
-  "home_id": 625830,
-  "home_name": "Dallas Surf N1 G2013/14 White (TX)",
-  "away_id": 142233,
-  "away_name": "FC Dallas Youth N1 G2013/14 McAnally (TX)",
-  "hs": 0,
-  "as": 2
- },
- {
   "id": 26960524,
   "date": "2026-09-12",
   "event_id": 54028,
@@ -414,6 +401,19 @@
   "away_name": "Dallas Cosmos N1 G2013/14 Navy (TX)",
   "hs": 1,
   "as": 5
+ },
+ {
+  "id": 26960238,
+  "date": "2026-09-12",
+  "event_id": 54028,
+  "event": "N1 I South District 2 (Texas Club Soccer League) I 2026-27",
+  "division": "U13G GU13 Division 1",
+  "home_id": 625830,
+  "home_name": "Dallas Surf N1 G2013/14 White (TX)",
+  "away_id": 142233,
+  "away_name": "FC Dallas Youth N1 G2013/14 McAnally (TX)",
+  "hs": 0,
+  "as": 2
  },
  {
   "id": 26961264,

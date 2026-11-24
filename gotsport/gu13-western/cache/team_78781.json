@@ -1,7 +1,7 @@
 {
  "team_id": 78781,
  "team_name": "FW All Stars FC u13G",
- "pulled": "2026-11-16",
+ "pulled": "2026-11-24",
  "events": [
   {
    "id": 41032,
@@ -38,6 +38,12 @@
    "name": "2026 Oklahoma Super Cup",
    "start": "2026-07-31",
    "end": "2026-08-02"
+  },
+  {
+   "id": 55122,
+   "name": "North Texas Regional Premier League-NTXRPL Select 26/27",
+   "start": "2026-09-12",
+   "end": "2027-01-01"
   }
  ],
  "flights": {
@@ -58,6 +64,9 @@
   ],
   "52378": [
    475689
+  ],
+  "55122": [
+   538542
   ]
  }
 }
